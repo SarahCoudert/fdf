@@ -6,7 +6,7 @@
 /*   By: scoudert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/09 13:07:15 by scoudert          #+#    #+#             */
-/*   Updated: 2015/02/09 18:34:42 by scoudert         ###   ########.fr       */
+/*   Updated: 2015/02/11 11:43:13 by scoudert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,25 @@
 #include <unistd.h>
 
 #define HEIGHT_SCREEN		480
-#define WIDTH_SCREEN		640
+#define WIDTH_SCREEN		1280
 #define COLOR				32
 
 int		main(int ac, char **av)
 {
 	(void)ac;
 	(void)**av;
-	SDL_Surface *screen;
-	SDL_Surface *bg;
-	SDL_Rect rect;
-	SDL_Surface *poney;
-	SDL_Rect pos_poney;
-	int		continuer;
+	int				continuer;
+	SDL_Surface		*screen;
+	SDL_Surface		*bg;
+	SDL_Surface		*poney;
+	SDL_Rect		rect;
+	SDL_Rect		pos_poney;
 	SDL_Event		event;
+	int				i;
 
+	i = 0;
 	continuer = 1;
-	pos_poney.x = 75;
+	pos_poney.x = 30;
 	pos_poney.y = 210;
 	rect.x = 0;
 	rect.y = 0;
@@ -88,11 +90,13 @@ int		main(int ac, char **av)
 				if (event.key.keysym.sym == SDLK_DOWN)		//to the bottom
 					if (pos_poney.y + 75 <= HEIGHT_SCREEN)
 						pos_poney.y += 3;
+				i++;
 			}
 			else
 				continuer = 1;
 		}
-		SDL_BlitSurface(bg, NULL, screen, &rect);
+		if (i % 8 == 1)
+			SDL_BlitSurface(bg, NULL, screen, &rect);
 		SDL_BlitSurface(poney, NULL, screen, &pos_poney);
 		SDL_Flip(screen);
 	}
