@@ -6,18 +6,19 @@
 /*   By: scoudert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/09 13:07:15 by scoudert          #+#    #+#             */
-/*   Updated: 2015/02/11 11:43:13 by scoudert         ###   ########.fr       */
+/*   Updated: 2015/02/11 18:35:23 by scoudert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <SDL.h>
+#include <SDL_image.h>
 #include "libft/includes/libft.h"
 #include <unistd.h>
 
-#define HEIGHT_SCREEN		480
-#define WIDTH_SCREEN		1280
+#define HEIGHT_SCREEN		405
+#define WIDTH_SCREEN		1100
 #define COLOR				32
 
 int		main(int ac, char **av)
@@ -52,11 +53,11 @@ int		main(int ac, char **av)
 	if (screen == NULL)
 		ft_putendl_fd("Error : Cannot load video", 2);
 	SDL_WM_SetCaption("Horsemen of the Appocalypse", NULL);
-	if ((bg = SDL_LoadBMP("HD-Grass-Wallpapers.bmp")) == NULL)
+	if ((bg = IMG_Load("arbres.jpg")) == NULL)
 		ft_putendl_fd("Error : Cannot charge background image", 2);
 
 	SDL_BlitSurface(bg, NULL, screen, &rect);
-	if ((poney = SDL_LoadBMP("chevalbmp.bmp")) == NULL)
+	if ((poney = IMG_Load("Black-horse-00.png")) == NULL)
 		ft_putendl_fd("Error : Cannot charge horse image", 2);
 
 	SDL_SetColorKey(poney, SDL_SRCCOLORKEY, SDL_MapRGB(poney->format, 255, 255, 255));
@@ -79,7 +80,7 @@ int		main(int ac, char **av)
 				if (event.key.keysym.sym == SDLK_q)			// pressing q too
 					continuer = 0;
 				if (event.key.keysym.sym == SDLK_RIGHT)		// move poney to the right
-					if (pos_poney.x + 80 <= WIDTH_SCREEN)
+					if (pos_poney.x + 3 <= WIDTH_SCREEN)
 						pos_poney.x += 3;					//we move 3px by 3px to make it faster
 				if (event.key.keysym.sym == SDLK_LEFT)		// to the left
 					if (pos_poney.x - 3 >= 0)
@@ -88,14 +89,14 @@ int		main(int ac, char **av)
 					if (pos_poney.y - 3 >= 0)
 						pos_poney.y -= 3;
 				if (event.key.keysym.sym == SDLK_DOWN)		//to the bottom
-					if (pos_poney.y + 75 <= HEIGHT_SCREEN)
+					if (pos_poney.y + 3 <= HEIGHT_SCREEN)
 						pos_poney.y += 3;
 				i++;
 			}
 			else
 				continuer = 1;
 		}
-		if (i % 8 == 1)
+		if (i % 1 == 0)
 			SDL_BlitSurface(bg, NULL, screen, &rect);
 		SDL_BlitSurface(poney, NULL, screen, &pos_poney);
 		SDL_Flip(screen);
