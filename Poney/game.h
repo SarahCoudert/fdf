@@ -6,7 +6,7 @@
 /*   By: scoudert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 18:30:11 by scoudert          #+#    #+#             */
-/*   Updated: 2015/02/12 17:40:52 by scoudert         ###   ########.fr       */
+/*   Updated: 2015/02/12 20:12:11 by scoudert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include "libft/includes/libft.h"
 # include <unistd.h>
 # include "SDL_define.h"
-# define HEIGHT_SCREEN		500
-# define WIDTH_SCREEN		2250
+# define HEIGHT_SCREEN		405
+# define WIDTH_SCREEN		1100
 # define PONEY_LAR			192
 # define PONEY_HAU			144
 # define COLOR				32
@@ -32,7 +32,7 @@ typedef struct				s_sdl
 	SDL_Rect				rect;
 	SDL_Rect				pos_poney;
 	SDL_Event				event;
-	SDL_Surface				*sprite[8];
+	SDL_Surface				*sprite[15];
 }							t_sdl;
 
 void						loop(t_sdl sdl);

@@ -6,7 +6,7 @@
 /*   By: scoudert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/09 13:07:15 by scoudert          #+#    #+#             */
-/*   Updated: 2015/02/12 17:43:47 by scoudert         ###   ########.fr       */
+/*   Updated: 2015/02/12 19:59:14 by scoudert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,13 @@ void	sprite_init		(t_sdl *sdl)
 	sdl->sprite[5] = img_load("IMG_SRC/HorseofSpringAssets/Sprite/Black Horse/horse-run-black-05.png");
 	sdl->sprite[6] = img_load("IMG_SRC/HorseofSpringAssets/Sprite/Black Horse/horse-run-black-06.png");
 	sdl->sprite[7] = img_load("Black-horse-00.png");
-	sdl->poney = img_load("Black-horse-00.png");
+	sdl->sprite[8] = img_load("IMG_SRC/HorseofSpringAssets/Sprite/Black Horse/B-H-J-00.png");
+	sdl->sprite[9] = img_load("IMG_SRC/HorseofSpringAssets/Sprite/Black Horse/B-H-J-01.png");
+	sdl->sprite[10] = img_load("IMG_SRC/HorseofSpringAssets/Sprite/Black Horse/B-H-J-02.png");
+	sdl->sprite[11] = img_load("IMG_SRC/HorseofSpringAssets/Sprite/Black Horse/B-H-J-03.png");
+	sdl->sprite[12] = img_load("IMG_SRC/HorseofSpringAssets/Sprite/Black Horse/B-H-J-04.png");
+	sdl->sprite[13] = img_load("IMG_SRC/HorseofSpringAssets/Sprite/Black Horse/B-H-J-05.png");
+	sdl->sprite[14] = img_load("IMG_SRC/HorseofSpringAssets/Sprite/Black Horse/B-H-J-06.png");
 }
 
 int		main(int ac, char **av)
@@ -31,7 +37,7 @@ int		main(int ac, char **av)
 	
 	(void)ac;
 	(void)**av;
-	sdl.pos_poney.x = 30;
+	sdl.pos_poney.x = 50;
 	sdl.pos_poney.y = 210;
 	sdl.rect.x = 0;
 	sdl.rect.y = 0;
@@ -49,7 +55,7 @@ int		main(int ac, char **av)
 	if (sdl.screen == NULL)
 		ft_putendl_fd("Error : Cannot load video", 2);
 	sdl_caption("Horsemen of the Appocalypse", NULL);
-	if ((sdl.bg = img_load("redwood.jpg")) == NULL)
+	if ((sdl.bg = img_load("arbres.jpg")) == NULL)
 		ft_putendl_fd("Error : Cannot charge background image", 2);
 	sdl_blit(sdl.bg, NULL, sdl.screen, &sdl.rect);
 	if ((sdl.poney = img_load("Black-horse-00.png")) == NULL)
@@ -57,6 +63,7 @@ int		main(int ac, char **av)
 	sdl_blit(sdl.poney, NULL, sdl.screen, &sdl.pos_poney);
 	sdl_keyrepeat(10, 10);
 	SDL_SetColorKey(sdl.poney, SDL_SRCCOLORKEY, SDL_MapRGB(sdl.poney->format, 255, 255, 255));
+	sdl_flip(sdl.screen);
 	loop(sdl);
 	sdl_freesurface(sdl.bg);
 	sdl_freesurface(sdl.poney);
