@@ -6,103 +6,60 @@
 /*   By: scoudert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/09 13:07:15 by scoudert          #+#    #+#             */
-/*   Updated: 2015/02/11 18:35:23 by scoudert         ###   ########.fr       */
+/*   Updated: 2015/02/12 17:43:47 by scoudert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <SDL.h>
-#include <SDL_image.h>
-#include "libft/includes/libft.h"
-#include <unistd.h>
+#include "game.h"
 
-#define HEIGHT_SCREEN		405
-#define WIDTH_SCREEN		1100
-#define COLOR				32
+void	sprite_init		(t_sdl *sdl)
+{
+	sdl->sprite[0] = img_load("IMG_SRC/HorseofSpringAssets/Sprite/Black Horse/horse-run-black-00.png");
+	sdl->sprite[1] = img_load("IMG_SRC/HorseofSpringAssets/Sprite/Black Horse/horse-run-black-01.png");
+	sdl->sprite[2] = img_load("IMG_SRC/HorseofSpringAssets/Sprite/Black Horse/horse-run-black-02.png");
+	sdl->sprite[3] = img_load("IMG_SRC/HorseofSpringAssets/Sprite/Black Horse/horse-run-black-03.png");
+	sdl->sprite[4] = img_load("IMG_SRC/HorseofSpringAssets/Sprite/Black Horse/horse-run-black-04.png");
+	sdl->sprite[5] = img_load("IMG_SRC/HorseofSpringAssets/Sprite/Black Horse/horse-run-black-05.png");
+	sdl->sprite[6] = img_load("IMG_SRC/HorseofSpringAssets/Sprite/Black Horse/horse-run-black-06.png");
+	sdl->sprite[7] = img_load("Black-horse-00.png");
+	sdl->poney = img_load("Black-horse-00.png");
+}
 
 int		main(int ac, char **av)
 {
+	t_sdl			sdl;
+	
 	(void)ac;
 	(void)**av;
-	int				continuer;
-	SDL_Surface		*screen;
-	SDL_Surface		*bg;
-	SDL_Surface		*poney;
-	SDL_Rect		rect;
-	SDL_Rect		pos_poney;
-	SDL_Event		event;
-	int				i;
-
-	i = 0;
-	continuer = 1;
-	pos_poney.x = 30;
-	pos_poney.y = 210;
-	rect.x = 0;
-	rect.y = 0;
-	bg = NULL;
-	screen = NULL;
-	if ((SDL_Init(SDL_INIT_VIDEO)) == (-1))
+	sdl.pos_poney.x = 30;
+	sdl.pos_poney.y = 210;
+	sdl.rect.x = 0;
+	sdl.rect.y = 0;
+	sdl.bg = NULL;
+	sdl.screen = NULL;
+	sprite_init(&sdl);
+	if ((sdl_init(SDL_INIT_VIDEO)) == (-1))
 	{
-		ft_putendl("SDL_Init error.");
+		ft_putendl_fd("SDL_Init error.", 2);
 		return (-1);
 	}
-	(SDL_WM_SetIcon(SDL_LoadBMP("sdl_icone.bmp"), NULL));
-	screen = SDL_SetVideoMode(WIDTH_SCREEN, HEIGHT_SCREEN, COLOR, SDL_HWSURFACE | SDL_DOUBLEBUF);
-	SDL_Flip(screen);
-	if (screen == NULL)
+	(sdl_seticon(sdl_bmp("sdl_icone.bmp"), NULL));
+	sdl.screen = sdl_videomode(WIDTH_SCREEN, HEIGHT_SCREEN,
+			COLOR, SDL_HWSURFACE | SDL_DOUBLEBUF);
+	if (sdl.screen == NULL)
 		ft_putendl_fd("Error : Cannot load video", 2);
-	SDL_WM_SetCaption("Horsemen of the Appocalypse", NULL);
-	if ((bg = IMG_Load("arbres.jpg")) == NULL)
+	sdl_caption("Horsemen of the Appocalypse", NULL);
+	if ((sdl.bg = img_load("redwood.jpg")) == NULL)
 		ft_putendl_fd("Error : Cannot charge background image", 2);
-
-	SDL_BlitSurface(bg, NULL, screen, &rect);
-	if ((poney = IMG_Load("Black-horse-00.png")) == NULL)
+	sdl_blit(sdl.bg, NULL, sdl.screen, &sdl.rect);
+	if ((sdl.poney = img_load("Black-horse-00.png")) == NULL)
 		ft_putendl_fd("Error : Cannot charge horse image", 2);
-
-	SDL_SetColorKey(poney, SDL_SRCCOLORKEY, SDL_MapRGB(poney->format, 255, 255, 255));
-
-	SDL_BlitSurface(poney, NULL, screen, &pos_poney);
-	SDL_EnableKeyRepeat(10, 10);
-	while (continuer)
-	{
-		SDL_WaitEvent(&event);
-		if (event.type)
-		{
-			if (event.type == SDL_QUIT)
-			{
-				continuer = 0;
-			}
-			else if (event.type == SDL_KEYDOWN)
-			{
-				if (event.key.keysym.sym == SDLK_ESCAPE)	// press escape quit the game
-					continuer = 0;
-				if (event.key.keysym.sym == SDLK_q)			// pressing q too
-					continuer = 0;
-				if (event.key.keysym.sym == SDLK_RIGHT)		// move poney to the right
-					if (pos_poney.x + 3 <= WIDTH_SCREEN)
-						pos_poney.x += 3;					//we move 3px by 3px to make it faster
-				if (event.key.keysym.sym == SDLK_LEFT)		// to the left
-					if (pos_poney.x - 3 >= 0)
-						pos_poney.x -= 3;
-				if (event.key.keysym.sym == SDLK_UP) 		//to the top
-					if (pos_poney.y - 3 >= 0)
-						pos_poney.y -= 3;
-				if (event.key.keysym.sym == SDLK_DOWN)		//to the bottom
-					if (pos_poney.y + 3 <= HEIGHT_SCREEN)
-						pos_poney.y += 3;
-				i++;
-			}
-			else
-				continuer = 1;
-		}
-		if (i % 1 == 0)
-			SDL_BlitSurface(bg, NULL, screen, &rect);
-		SDL_BlitSurface(poney, NULL, screen, &pos_poney);
-		SDL_Flip(screen);
-	}
-	SDL_FreeSurface(bg);
-	SDL_FreeSurface(poney);
-	SDL_Quit();
+	sdl_blit(sdl.poney, NULL, sdl.screen, &sdl.pos_poney);
+	sdl_keyrepeat(10, 10);
+	SDL_SetColorKey(sdl.poney, SDL_SRCCOLORKEY, SDL_MapRGB(sdl.poney->format, 255, 255, 255));
+	loop(sdl);
+	sdl_freesurface(sdl.bg);
+	sdl_freesurface(sdl.poney);
+	sdl_quit();
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: scoudert <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/02/11 17:58:37 by scoudert          #+#    #+#              #
-#    Updated: 2015/02/11 18:52:01 by scoudert         ###   ########.fr        #
+#    Updated: 2015/02/12 11:25:03 by scoudert         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SDL = -I ./SDL/ -L SDL
 SDL_F = SDL_image
 
 SRC = main.c \
+	  event.c \
 
 OBJ = $(SRC:.c=.o)
 
