@@ -100,6 +100,7 @@ void		loop(t_sdl sdl)
 		i++;
 		if (i % 4 == 1)// si il n'y a pas d'event a gerer(saut), on affiche en boucle Micheline en train de courir
 		{
+			SDL_Delay(30);
 			sdl.poney = sdl.sprite[j];
 			if (j < 6)
 				j++;

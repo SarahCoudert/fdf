@@ -17,7 +17,7 @@
 # include <SDL_image.h>
 # include "libft/includes/libft.h"
 # include <unistd.h>
-# include "SDL_define.h"
+# include "sdl_define.h"
 # define HEIGHT_SCREEN	354
 # define WIDTH_SCREEN	1900
 # define PONEY_LAR		192

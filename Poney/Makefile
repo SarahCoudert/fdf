@@ -18,7 +18,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 CFLAGSD = $(CFLAGS) -g
 
-SDL = -I ./SDL/ -L SDL
+SDL =$(shell `sdl-config --libs --cflags`)
 
 SDL_F = SDL_image
 
