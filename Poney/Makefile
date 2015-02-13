@@ -6,7 +6,7 @@
 #    By: scoudert <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/02/11 17:58:37 by scoudert          #+#    #+#              #
-#    Updated: 2015/02/12 11:25:03 by scoudert         ###   ########.fr        #
+#    Updated: 2015/02/13 15:50:29 by scoudert         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,6 @@ CFLAGS = -Wall -Wextra -Werror
 CFLAGSD = $(CFLAGS) -g
 
 SDL = -I ./SDL/ -L SDL
-
-#`sdl-config --cflags --libs`
 
 SDL_F = SDL_image
 
