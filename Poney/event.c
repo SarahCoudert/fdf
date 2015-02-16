@@ -6,40 +6,47 @@
 /*   By: scoudert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 11:22:48 by scoudert          #+#    #+#             */
-/*   Updated: 2015/02/13 17:21:27 by scoudert         ###   ########.fr       */
+/*   Updated: 2015/02/16 17:19:25 by scoudert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 
+static void			move_bg(t_sdl *sdl)
+{
+	sdl->bgx -= 15;
+	if (sdl->bgx == -sdl->bg->w + WIDTH_SCREEN)
+		sdl->bgx = 0;
+	sdl->tempbg.x = sdl->bgx;
+	sdl->tempbg.y = 0;
+}
+
 static int		jump(t_sdl *sdl)
 {
 	static int			i = 0;
 
-	SDL_Delay(35);
 	if (i < 7)
 	{
 		if (i < 3)
 		{
 			sdl->pos_poney.y -= 60;
-//			sdl->pos_poney.x += 8;
 			i++;
 		}
 		else
 		{
-			if (sdl->plane == 1 && i == 3)
+			if (sdl->plane == 1 && i == 3 && sdl->n <= 3)
 			{
-				sdl->n++;
-				SDL_Delay(10);
+				sdl->n++; //on incremente n pour eviter que Micheline ne vole trop longtemps
 			}
-			else 
+			else
+			{
 				sdl->pos_poney.y += 45;
-//			sdl->pos_poney.x += 13;
-			if (sdl->plane != 1)
+				sdl->plane = 0;
 				i++;
+			}
 		}
-		sdl->poney = sdl->sprite[8 + i];
-		sdl->plane = 0;
+		if (i <= 6)
+			sdl->poney = sdl->sprite[8 + i];
 		return (1);
 	}
 	else
@@ -58,10 +65,10 @@ static int		aux(t_sdl *sdl, Uint8 *keystate)
 		return (0);
 	if (keystate[SDLK_UP]) //jump
 	{
-		if (sdl->jumpstate == 1)
-			sdl->plane = 1;
-		sdl->jumpstate = 1;
-		if (sdl->n > 3)
+		if (sdl->jumpstate == 1) //si on est deja en train de sauter
+			sdl->plane = 1; //alors on plane
+		sdl->jumpstate = 1; //on met jumpstate a 1 dans tous les cas
+		if (sdl->n > 3) // si on a planer depuis trois tours on retombe
 		{
 			sdl->plane = 0;
 			sdl->n = 0;
@@ -112,11 +119,12 @@ void		loop(t_sdl sdl)
 			sdl.poney = sdl.sprite[7];
 			debut--;
 		}
-		if (sdl.jumpstate == 1)
+		if (sdl.jumpstate == 1) //si on est en train de sauter alors on saute
 		{
 			jump(&sdl);
 		}
-		sdl_blit(sdl.bg, NULL, sdl.screen, &sdl.rect);
+		move_bg(&sdl);
+		SDL_BlitSurface(sdl.bg, NULL, sdl.screen, &sdl.tempbg);
 		sdl_blit(sdl.poney, NULL, sdl.screen, &sdl.pos_poney);
 		sdl_flip(sdl.screen);
 	}

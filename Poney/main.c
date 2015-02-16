@@ -6,7 +6,7 @@
 /*   By: scoudert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/09 13:07:15 by scoudert          #+#    #+#             */
-/*   Updated: 2015/02/13 16:55:05 by scoudert         ###   ########.fr       */
+/*   Updated: 2015/02/16 17:08:43 by scoudert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,20 @@ void	sprite_init		(t_sdl *sdl)
 int		main(int ac, char **av)
 {
 	t_sdl			sdl;
-	
-	(void)ac;
-	(void)**av;
 	sdl.pos_poney.x = 50;
 	sdl.pos_poney.y = 220;
 	sdl.rect.x = 0;
 	sdl.rect.y = 0;
+	sdl.bgx = 0;
 	sdl.jumpstate = 0;
 	sdl.plane = 0;
 	sdl.n = 0;
 	sdl.bg = NULL;
 	sdl.screen = NULL;
+	sdl.tempbg.y = 0;
+	sdl.tempbg.x = 0;
+	(void)ac;
+	(void)**av;
 	sprite_init(&sdl);
 	if ((sdl_init(SDL_INIT_VIDEO)) == (-1))
 	{
@@ -58,7 +60,7 @@ int		main(int ac, char **av)
 	if (sdl.screen == NULL)
 		ft_putendl_fd("Error : Cannot load video", 2);
 	sdl_caption("Horsemen of the Appocalypse", NULL);
-	if ((sdl.bg = img_load("arbres.jpg")) == NULL)
+	if ((sdl.bg = img_load("arbres.png")) == NULL)
 		ft_putendl_fd("Error : Cannot charge background image", 2);
 	sdl_blit(sdl.bg, NULL, sdl.screen, &sdl.rect);
 	if ((sdl.poney = img_load("Black-horse-00.png")) == NULL)
