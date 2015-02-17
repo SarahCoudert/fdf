@@ -6,7 +6,7 @@
 /*   By: scoudert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 18:30:11 by scoudert          #+#    #+#             */
-/*   Updated: 2015/02/17 17:00:36 by scoudert         ###   ########.fr       */
+/*   Updated: 2015/02/17 18:13:49 by scoudert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,10 @@ typedef struct			s_menu
 	SDL_Surface			*menu;
 	SDL_Surface			*Choice;
 	SDL_Rect			pos_menu;
-	SDL_Rect			pos_choice;
+	int					what_choice;
 	SDL_Event			ev_men;
 	int					is_menu;
+	SDL_Surface			*state[4];
 }						t_menu;
 
 int						ft_menu(t_menu *menu, t_sdl *sdl);

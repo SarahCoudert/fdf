@@ -6,7 +6,7 @@
 /*   By: scoudert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/09 13:07:15 by scoudert          #+#    #+#             */
-/*   Updated: 2015/02/17 17:25:15 by scoudert         ###   ########.fr       */
+/*   Updated: 2015/02/17 18:29:23 by scoudert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ void	sprite_init		(t_sdl *sdl)
 int		main(int ac, char **av)
 {
 	t_sdl			sdl;
-//	t_menu			menu;
-//	int				choice;
+	t_menu			menu;
+	int				choice;
 
-//	choice = 0;
+	choice = 0;
 	sdl.pos_poney.x = 50;
 	sdl.pos_poney.y = 220;
 	sdl.rect.x = 0;
@@ -52,7 +52,7 @@ int		main(int ac, char **av)
 	sdl.tempbg1.x = 0;
 	sdl.time_since_begin = 0;
 	sdl.prev_time = 0;
-//	menu.is_menu = 1;
+	menu.is_menu = 1;
 	(void)ac;
 	(void)**av;
 	sprite_init(&sdl);
@@ -72,16 +72,17 @@ int		main(int ac, char **av)
 	if (sdl.screen == NULL)
 		ft_putendl_fd("Error : Cannot load video", 2);
 	sdl_caption("Horsemen of the Appocalypse", NULL);
-//	while (menu.is_menu)
-//	{
-	//	SDL_WaitEvent(&menu.ev_men);
-	//	{
-//			choice = ft_menu(&menu, &sdl);
-//			if (choice == 3)
-//				return (0);
-//			if (choice == 0)
-//			{
-//				menu.is_menu = 0;
+	while (menu.is_menu)
+	{
+			choice = ft_menu(&menu, &sdl);
+		SDL_WaitEvent(&menu.ev_men);
+		{
+			choice = ft_menu(&menu, &sdl);
+			if (choice == 3)
+				return (0);
+			if (choice == 0)
+			{
+				menu.is_menu = 0;
 				if ((sdl.bg = img_load("../IMG_SRC/arbres.png")) == NULL)
 					ft_putendl_fd("Error : Cannot charge background image", 2);
 				sdl_blit(sdl.bg, NULL, sdl.screen, &sdl.rect);
@@ -91,9 +92,11 @@ int		main(int ac, char **av)
 				sdl_keyrepeat(10, 10);
 				sdl_flip(sdl.screen);
 				loop(sdl);
-		//	}
-	//	}
-//	}
+			}
+			if (choice == 42)
+				menu.is_menu = 1;
+		}
+	}
 	Mix_CloseAudio();
 	sdl_freesurface(sdl.bg);
 	sdl_freesurface(sdl.poney);

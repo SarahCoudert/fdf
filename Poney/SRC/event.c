@@ -6,7 +6,7 @@
 /*   By: scoudert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 11:22:48 by scoudert          #+#    #+#             */
-/*   Updated: 2015/02/17 17:23:23 by scoudert         ###   ########.fr       */
+/*   Updated: 2015/02/17 18:14:19 by scoudert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +82,13 @@ static int		aux(t_sdl *sdl, Uint8 *keystate)
 			}
 		}
 	}
-		if (sdl->event.type == SDL_KEYUP && sdl->event.key.keysym.sym == SDLK_m)
-		{
-				if (Mix_PausedMusic() == 1)
-				Mix_ResumeMusic();
-			else if (Mix_PlayingMusic() == 1)
-				Mix_PauseMusic();
-		}
+	if (sdl->event.type == SDL_KEYUP && sdl->event.key.keysym.sym == SDLK_m)
+	{
+		if (Mix_PausedMusic() == 1)
+			Mix_ResumeMusic();
+		else if (Mix_PlayingMusic() == 1)
+			Mix_PauseMusic();
+	}
 	return (1);
 }
 
