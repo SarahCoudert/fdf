@@ -12,7 +12,7 @@
 
 This game was created by scoudert and mgrimald in 2015
 
-Commands  
+Commands
 
 M - Mute and resume Music
 Up - Jump
@@ -26,13 +26,22 @@ Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0) (http 
 
 -----------------------
 
-Sprite used  
+Sprites
 
-Horse   2D Platformer Art Assets from Horse of Spring by lancelot_gao | http //opengameart.org/content/2d-platformer-art-assets-from-horse-of-spring
+Horse : 2D Platformer Art Assets from Horse of Spring by lancelot_gao | http //opengameart.org/content/2d-platformer-art-assets-from-horse-of-spring
 We change sprite's colors on purpose for the game.
 
-Background   Morning Scenery by ChasingArtwork | http //chasingartwork.deviantart.com/
+Background : Morning Scenery by ChasingArtwork | http //chasingartwork.deviantart.com/
 
 ----------------------
+
+Font : Copyright (c) 2011, Andrew Paglinawan (www.andrewpaglinawan.com), 
+with Reserved Font Name "Quicksand".
+
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is copied below, and is also available with a FAQ at:
+http://scripts.sil.org/OFL
+
+-----------------------
 
 Sarah COUDERT - Ecole 42

@@ -16,6 +16,7 @@
 # include <SDL.h>
 # include <SDL_mixer.h>
 # include <SDL_image.h>
+# include <SDL_ttf.h>
 # include "libft/includes/libft.h"
 # include <unistd.h>
 # include "sdl_define.h"
@@ -40,7 +41,6 @@ typedef struct			s_sdl
 	int					n;
 	int					bgx;
 	SDL_Rect			tempbg1;
-	SDL_Rect			tempbg2;
 	int					time_since_begin;
 	int					prev_time;
 	Mix_Music			*music;
@@ -50,13 +50,22 @@ typedef struct			s_menu
 {
 	SDL_Surface			*menu;
 	SDL_Surface			*Choice;
+	SDL_Color			color;
+	SDL_Surface			*message[100];
+	TTF_Font			*font[5];
+	int					size[5];
+	char				*words[5];
 	SDL_Rect			pos_menu;
 	int					what_choice;
 	SDL_Event			ev_men;
 	int					is_menu;
-	SDL_Surface			*state[4];
+	SDL_Surface			*state[20];
+	int					is_menu_choice;
+	SDL_Event			ev_cred;
 }						t_menu;
 
+int						menu_sound(t_sdl *sdl, t_menu *menu);
+int						menu_credit(t_sdl *sdl, t_menu *menu);
 int						ft_menu(t_menu *menu, t_sdl *sdl);
 void					loop(t_sdl sdl);
 

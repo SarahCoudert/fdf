@@ -14,7 +14,7 @@
 
 static void			move_bg(t_sdl *sdl)
 {
-	sdl->bgx -= 13;
+	sdl->bgx -= 5;
 	if (sdl->bgx <= -sdl->bg->w + WIDTH_SCREEN)
 		sdl->bgx = 0;
 	sdl->tempbg1.x = sdl->bgx;
@@ -82,12 +82,17 @@ static int		aux(t_sdl *sdl, Uint8 *keystate)
 			}
 		}
 	}
-	if (sdl->event.type == SDL_KEYUP && sdl->event.key.keysym.sym == SDLK_m)
+	if (sdl->event.type == SDL_KEYUP)
 	{
-		if (Mix_PausedMusic() == 1)
-			Mix_ResumeMusic();
-		else if (Mix_PlayingMusic() == 1)
-			Mix_PauseMusic();
+		if (sdl->event.key.keysym.sym == SDLK_m)
+		{
+			if (Mix_PausedMusic() == 1)
+				Mix_ResumeMusic();
+			else if (Mix_PlayingMusic() == 1)
+				Mix_PauseMusic();
+		}
+		if (sdl->event.key.keysym.sym == SDLK_UP)
+			sdl->plane = 0;
 	}
 	return (1);
 }
@@ -109,18 +114,15 @@ void		loop(t_sdl sdl)
 	while (continuer)
 	{
 		sdl.time_since_begin = SDL_GetTicks();
-		if (sdl.time_since_begin - sdl.prev_time > 30)
+		if (sdl.time_since_begin - sdl.prev_time > 10)
 		{
 			sdl.prev_time = sdl.time_since_begin;
 			while (SDL_PollEvent(&sdl.event)) // tant que Pollevent renvoie un truc
 			{
-				if (sdl.event.type) //on verifie si on a un event
-				{
-					continuer = aux(&sdl, keystate);//on regarde les touches
-				}
+				continuer = aux(&sdl, keystate);//on regarde les touches
 			}
 			i++;
-			if (i % 3 == 1)// si il n'y a pas d'event a gerer(saut), on affiche en boucle Micheline en train de courir
+			if (i % 6 == 1)// si il n'y a pas d'event a gerer(saut), on affiche en boucle Micheline en train de courir
 			{
 				sdl.poney = sdl.sprite[j];
 				if (j < 6)
@@ -133,12 +135,12 @@ void		loop(t_sdl sdl)
 				sdl.poney = sdl.sprite[7];
 				debut--;
 			}
-			if (sdl.jumpstate == 1) //si on est en train de sauter alors on saute
+			if (sdl.jumpstate == 1 || sdl.plane == 1) //si on est en train de sauter alors on saute
 				jump(&sdl);
 			move_bg(&sdl);
 			SDL_BlitSurface(sdl.bg, NULL, sdl.screen, &sdl.tempbg1);
 			sdl_blit(sdl.poney, NULL, sdl.screen, &sdl.pos_poney);
+			sdl_flip(sdl.screen);
 		}
-		sdl_flip(sdl.screen);
 	}
 }
