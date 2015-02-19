@@ -6,7 +6,7 @@
 /*   By: scoudert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/09 13:07:15 by scoudert          #+#    #+#             */
-/*   Updated: 2015/02/17 18:29:23 by scoudert         ###   ########.fr       */
+/*   Updated: 2015/02/19 17:33:33 by scoudert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,31 +38,35 @@ void sprite_init		(t_sdl *sdl, t_menu *menu)
 	menu->state[6] = img_load("../IMG_SRC/MENU/sound-page-choice.png");
 	menu->state[7] = img_load("../IMG_SRC/MENU/credit page.png");
 	menu->state[8] = img_load("../IMG_SRC/MENU/credit page-choice2.png");
-	menu->size[0] = 20;
-	menu->size[1] = 18;
+	menu->size[0] = 19;
+	menu->size[1] = 19;
 	menu->size[2] = 20;
-	menu->size[3] = 17;
+	menu->size[3] = 20;
 	menu->size[4] = 17;
 	menu->words[0] = "Return to menu";
 	menu->words[1] = "Next";
 	menu->words[2] = "Previous";
 	menu->words[3] = "Menu";
 	menu->words[4] = "   ";
+	bad->sprite[0] = img_load("../IMG_SRC/Sprite/ennemy/Box.png");
 }
 
 int		main(int ac, char **av)
 {
 	t_sdl			sdl;
 	t_menu			menu;
+	t_bad			bad;
 	int				choice;
 	int				i;
 	SDL_Color		rgb;
 
-	rgb.r = 255;
-	rgb.g = 255;
-	rgb.b = 255;
+	rgb.r = 225;
+	rgb.g = 225;
+	rgb.b = 225;
 	sdl.pos_poney.x = 50;
 	sdl.pos_poney.y = 220;
+	bad.pos_bad.x = 1010;
+	bad.pos_bad.y = 220;
 	sdl.rect.x = 0;
 	sdl.rect.y = 0;
 	sdl.bgx = 0;
@@ -101,7 +105,7 @@ int		main(int ac, char **av)
 	sdl_caption("Horsemen of the Appocalypse", NULL);
 	while (i <= 4)
 	{
-		menu.font[i] = TTF_OpenFont("../IMG_SRC/FONTS/Quicksand-Regular.ttf", menu.size[i]);
+		menu.font[i] = TTF_OpenFont("../IMG_SRC/FONTS/Quicksand-Bold.ttf", menu.size[i]);
 		menu.message[i] = TTF_RenderText_Solid(menu.font[i], menu.words[i], rgb);
 		i++;
 	}
@@ -123,7 +127,7 @@ int		main(int ac, char **av)
 				ft_putendl_fd("Error : Cannot charge horse image", 2);
 			sdl_blit(sdl.poney, NULL, sdl.screen, &sdl.pos_poney);
 			sdl_flip(sdl.screen);
-			loop(sdl);
+			loop(sdl, bad);
 			return (0);
 		}
 		if (choice == 1)

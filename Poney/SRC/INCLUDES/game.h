@@ -6,7 +6,7 @@
 /*   By: scoudert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 18:30:11 by scoudert          #+#    #+#             */
-/*   Updated: 2015/02/17 18:13:49 by scoudert         ###   ########.fr       */
+/*   Updated: 2015/02/19 17:42:48 by scoudert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # define PONEY_LAR		192
 # define PONEY_HAU		144
 # define COLOR			32
+# define SQUARE_WIDTH	80
+# define SQUARE_HEIGHT	80
 
 typedef struct			s_sdl
 {
@@ -64,9 +66,16 @@ typedef struct			s_menu
 	SDL_Event			ev_cred;
 }						t_menu;
 
+typedef struct			s_bad
+{
+	SDL_Surface			*bad[5];
+	SDL_Rect			pos_bad;
+}						t_bad;
+
 int						menu_sound(t_sdl *sdl, t_menu *menu);
 int						menu_credit(t_sdl *sdl, t_menu *menu);
 int						ft_menu(t_menu *menu, t_sdl *sdl);
-void					loop(t_sdl sdl);
+void					loop(t_sdl sdl, t_bad bad);
+void					ennemy(t_sdl *sdl, t_bad *bad);
 
 #endif

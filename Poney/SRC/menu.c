@@ -6,7 +6,7 @@
 /*   By: scoudert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/17 16:35:47 by scoudert          #+#    #+#             */
-/*   Updated: 2015/02/17 18:29:26 by scoudert         ###   ########.fr       */
+/*   Updated: 2015/02/19 14:22:13 by scoudert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,17 +76,33 @@ int			menu_credit(t_sdl *sdl, t_menu *menu)
 				return (3);
 			if (keystate[SDLK_LEFT])
 			{
-				if (menu->what_choice == 7)
+				if (menu->what_choice == 7) //return to menu
+				{
 					i = 0;
-				if (menu->what_choice == 8)
+					mess.x = 46; // 0 = gauche | 1000 = droite
+					mess.y = 275; // 0 = haut | 354 = bas
+				}
+				if (menu->what_choice == 8) //prev
+				{
 					i = 2;
+					mess.x = 45;
+					mess.y = 267;
+				}
 			}
 			if (keystate[SDLK_RIGHT])
 			{
-				if (menu->what_choice == 7)
+				if (menu->what_choice == 7) //next
+				{
 					i = 1;
-				if (menu->what_choice == 8)
+					mess.x = 865;
+					mess.y = 287;
+				}
+				if (menu->what_choice == 8) //menu
+				{
 					i = 3;
+					mess.x = 866;
+					mess.y = 287;
+				}
 			}
 			if (keystate[SDLK_RETURN] || keystate[SDLK_KP_ENTER])
 			{
@@ -128,10 +144,6 @@ int			ft_menu(t_menu *menu, t_sdl *sdl)
 			return (3);
 		else if (menu->ev_men.type == SDL_KEYDOWN)
 		{
-			if (keystate[SDLK_ESCAPE])
-				return (3);
-			if (keystate[SDLK_q])
-				return (3);
 			if (keystate[SDLK_UP])
 			{
 				if (menu->what_choice > 1)
