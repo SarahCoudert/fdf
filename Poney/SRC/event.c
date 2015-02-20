@@ -24,7 +24,7 @@ static void			move_bg(t_sdl *sdl)
 static void		jump(t_sdl *sdl, Uint8 *keystate)
 {
 	static int			i = 0;
-(void)keystate;
+	SDL_Delay(30);
 	if (i < 7)
 	{
 		if (i < 3)
@@ -139,16 +139,17 @@ void		loop(t_sdl sdl, t_bad bad)
 			if (sdl.jumpstate == 1) //si on est en train de sauter alors on saute
 				jump(&sdl, keystate);
 			move_bg(&sdl);
+				int res;
+				res = 0;
 			if (ennemy(&sdl, &bad) == -1)
 			{
-				sdl.poney = bad.sprite[0];
+				res = -1;
 			}
 			SDL_BlitSurface(sdl.bg, NULL, sdl.screen, &sdl.tempbg1);
 			SDL_BlitSurface(bad.image, NULL, sdl.screen, &bad.pos_bad);
+			if (res != -1)
 			sdl_blit(sdl.poney, NULL, sdl.screen, &sdl.pos_poney);
 			sdl_flip(sdl.screen);
-			if (sdl.poney == bad.sprite[0])
-				SDL_Delay(300);
 		}
 	}
 }

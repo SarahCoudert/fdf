@@ -40,11 +40,18 @@ all: $(NAME)
 $(NAME): $(SRC)
 	make -C $(LIBFT)
 	$(CC) $(CFLAGS) $(SRC) -I $(SDL_DIR)/include/SDL $(S_D) \
-		-L$(SDL_DIR)/lib -lSDL -lSDLmain -Wl,-framework,Cocoa \
+		-L$(SDL_DIR)/lib -lSDL -lSDLmain -Wl,-framework,Cocoa\
 		-lSDL -lSDL_image -lSDL_mixer -lSDL_ttf libft/libft.a \
 		-o $(NAME)
 	make -C $(LIBFT) clean
-	mv $(NAME) ..
+
+linux: $(SRC)
+	make -C $(LIBFT)
+	$(CC) $(CFLAGS) $(SRC) -I $(SDL_DIR)/include/SDL $(S_D) \
+		-L$(SDL_DIR)/lib -lSDL -lSDLmain -lSDL -lSDL_image -lSDL_mixer \
+		-lSDL_ttf libft/libft.a \
+		-o $(NAME)
+	make -C $(LIBFT) clean
 
 clean:
 	make -C $(LIBFT) clean
@@ -55,3 +62,5 @@ fclean: clean
 	rm -f ../$(NAME)
 
 re: fclean all
+
+.PHONY : fclean re all linux

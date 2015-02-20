@@ -48,14 +48,14 @@ void		sprite_init		(t_sdl *sdl, t_menu *menu, t_bad *bad)
 	menu->words[2] = "Previous";
 	menu->words[3] = "Menu";
 	menu->words[4] = "   ";
-	bad->sprite[0] = img_load("../IMG_SRC/Sprite/ennemy/Box.png");
-	bad->sprite[1] = img_load("../IMG_SRC/Sprite/ennemy/box01.png");
-	bad->sprite[2] = img_load("../IMG_SRC/Sprite/ennemy/box02.png");
-	bad->sprite[3] = img_load("../IMG_SRC/Sprite/ennemy/box03.png");
-	bad->sprite[4] = img_load("../IMG_SRC/Sprite/ennemy/box04.png");
-	bad->sprite[5] = img_load("../IMG_SRC/Sprite/ennemy/box05.png");
-	bad->sprite[6] = img_load("../IMG_SRC/Sprite/ennemy/box06.png");
-	bad->sprite[7] = img_load("../IMG_SRC/Sprite/ennemy/box07.png");
+	bad->sprite[0] = img_load("../IMG_SRC/SPRITE/ennemy/Box.png");
+	bad->sprite[1] = img_load("../IMG_SRC/SPRITE/ennemy/box01.png");
+	bad->sprite[2] = img_load("../IMG_SRC/SPRITE/ennemy/box02.png");
+	bad->sprite[3] = img_load("../IMG_SRC/SPRITE/ennemy/box03.png");
+	bad->sprite[4] = img_load("../IMG_SRC/SPRITE/ennemy/box04.png");
+	bad->sprite[5] = img_load("../IMG_SRC/SPRITE/ennemy/box05.png");
+	bad->sprite[6] = img_load("../IMG_SRC/SPRITE/ennemy/box06.png");
+	bad->sprite[7] = img_load("../IMG_SRC/SPRITE/ennemy/box07.png");
 }
 
 int		main(int ac, char **av)

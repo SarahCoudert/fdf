@@ -27,11 +27,11 @@ int		check_collision(SDL_Rect box, SDL_Rect poney)
 	leftbox = box.x;
 	rightbox = box.x + box.w;
 	topbox = box.y;
-	if (leftbox > rightpon || (leftbox <= rightpon && bottompon < topbox + 20))
+	if (leftbox > rightpon || bottompon - 30 < topbox)
 	{
 		return (1);
 	}
-	if (rightbox < leftpon || (rightbox > leftpon && bottompon < topbox + 20))
+	if (rightbox < leftpon + 40)
 	{
 		return (1);
 	}
@@ -45,9 +45,9 @@ int		ennemy(t_sdl *sdl, t_bad *bad)
 	bad->image = bad->sprite[0];
 	if (bad->pos_bad.x == 0)
 	{
-		if (i <= 7)
+		if (i != 7)
 		{
-			bad->image = bad->sprite[i + 1];
+			bad->image = bad->sprite[i];
 			i++;
 		}
 		else
@@ -59,5 +59,4 @@ int		ennemy(t_sdl *sdl, t_bad *bad)
 	else
 		bad->pos_bad.x -= 10;
 	return (check_collision(bad->pos_bad, sdl->pos_poney));
-	return (1);
 }
