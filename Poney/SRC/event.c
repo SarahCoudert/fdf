@@ -6,7 +6,7 @@
 /*   By: scoudert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 11:22:48 by scoudert          #+#    #+#             */
-/*   Updated: 2015/02/19 17:33:21 by scoudert         ###   ########.fr       */
+/*   Updated: 2015/02/20 15:43:53 by scoudert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void		loop(t_sdl sdl, t_bad bad)
 		if (sdl.time_since_begin - sdl.prev_time > 20)
 		{
 			sdl.prev_time = sdl.time_since_begin;
-			while (SDL_PollEvent(&sdl.event)) // tant que Pollevent renvoie un truc
+			while (SDL_PollEvent(&sdl.event))
 			{
 				continuer = aux(&sdl, keystate);//on regarde les touches
 			}
@@ -139,10 +139,16 @@ void		loop(t_sdl sdl, t_bad bad)
 			if (sdl.jumpstate == 1) //si on est en train de sauter alors on saute
 				jump(&sdl, keystate);
 			move_bg(&sdl);
-			ennemy(&sdl, &bad);
+			if (ennemy(&sdl, &bad) == -1)
+			{
+				sdl.poney = bad.sprite[0];
+			}
 			SDL_BlitSurface(sdl.bg, NULL, sdl.screen, &sdl.tempbg1);
+			SDL_BlitSurface(bad.image, NULL, sdl.screen, &bad.pos_bad);
 			sdl_blit(sdl.poney, NULL, sdl.screen, &sdl.pos_poney);
 			sdl_flip(sdl.screen);
+			if (sdl.poney == bad.sprite[0])
+				SDL_Delay(300);
 		}
 	}
 }

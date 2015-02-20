@@ -3,91 +3,61 @@
 /*                                                        :::      ::::::::   */
 /*   obstacles.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: scoudert <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   by: scoudert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/19 16:36:07 by scoudert          #+#    #+#             */
-/*   Updated: 2015/02/19 17:42:42 by scoudert         ###   ########.fr       */
+/*   Updated: 2015/02/20 15:38:53 by scoudert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "INCLUDES/game.h"
 
-int		check_collision(SDL_Rec)
+int		check_collision(SDL_Rect box, SDL_Rect poney)
 {
-	if( bottomA <= topB )
-	{
-		return -1;
-	}
+	int		leftpon;
+	int		leftbox;
+	int		rightpon;
+	int		rightbox;
+	int		topbox;
+	int		bottompon;
 
-	if( topA >= bottomB )
+	leftpon = poney.x;
+	rightpon = poney.x + poney.w;
+	bottompon = poney.y + poney.h;
+	leftbox = box.x;
+	rightbox = box.x + box.w;
+	topbox = box.y;
+	if (leftbox > rightpon || (leftbox <= rightpon && bottompon < topbox + 20))
 	{
-		return -1;
+		return (1);
 	}
-
-	if( rightA <= leftB )
+	if (rightbox < leftpon || (rightbox > leftpon && bottompon < topbox + 20))
 	{
-		return -1;
+		return (1);
 	}
-
-	if( leftA >= rightB )
-	{
-		return -1;
-	}
-
-	return 1;
+	return (-1);
 }
 
-void		ennemy(t_sdl *sdl, t_bad *bad)
+int		ennemy(t_sdl *sdl, t_bad *bad)
 {
-	int leftW;
-	int leftB;
-	int rightW;
-	int rightB;
-	int topW;
-	int topB;
-	int bottomW;
-	int bottomB;
+	static int			i = 0;
 
-	bad->pos_bad.y -= 2;
-	leftB = bad->pos_bad.x;
-	rightB = bad->pos_bad.x + bad->pos_bad.w;
-	topB = bad->pos_bad.y;
-	bottomB = bad->pos_bad.y + bad->pos_bad.h;
-
-	leftW = sdl->pos_poney.x;
-	rightW = sdl->pos_poney.x + sdl->pos_poney.w;
-	topW = sdl->pos_poney.y;
-	bottomW = sdl->pos_poney.y + sdl->pos_poney.h;
-
-	if (( bad->pos_bad.x < 0 ))
+	bad->image = bad->sprite[0];
+	if (bad->pos_bad.x == 0)
 	{
-		bad->pos_bad.x = 0;
-	}
-	if ( bad->pos_bad.x + SQUARE_WIDTH > WIDTH_SCREEN ) {
-		bad->pos_bad.x = WIDTH_SCREEN - SQUARE_WIDTH;
-	}
-	if( ( check_collision( bad->pos_bad sdl->pos_poney)) ) {
-		if(bad->pos_bad.x + bad->pos_bad.w > sdl->pos_poney.x + sdl->pos_poney.w) {
-			bad->pos_bad.x = sdl->pos_poney.x + sdl->pos_poney.w;
+		if (i <= 7)
+		{
+			bad->image = bad->sprite[i + 1];
+			i++;
 		}
-		if(bad->pos_bad.x < sdl->pos_poney.x) {
-			bad->pos_bad.x = sdl->pos_poney.x - bad->pos_bad.w;
+		else
+		{
+			i = 0;
+			bad->pos_bad.x = 1100;
 		}
 	}
-	bad->pos_bad.y += yVel;
-	if (( bad->pos_bad.y < 0 ) ) {
-		bad->pos_bad.y = 0;
-	}
-	if ( bad->pos_bad.y + SQUARE_HEIGHT > HEIGHT_SCREEN ) {
-		bad->pos_bad.y = HEIGHT_SCREEN - SQUARE_HEIGHT;
-	}
-	if( ( check_collision( bad->pos_bad. sdl->pos_poney.)) ) {
-		if(bad->pos_bad.y < sdl->pos_poney.y){
-			bad->pos_bad.y = sdl->pos_poney.y - bad->pos_bad.h;
-		}
-
-		if(bad->pos_bad.y + bad->pos_bad.h > sdl->pos_poney.y + sdl->pos_poney.h) {
-			bad->pos_bad.y = sdl->pos_poney.y + sdl->pos_poney.h;
-		}
-	}
+	else
+		bad->pos_bad.x -= 10;
+	return (check_collision(bad->pos_bad, sdl->pos_poney));
+	return (1);
 }

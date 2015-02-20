@@ -6,7 +6,7 @@
 /*   By: scoudert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 18:30:11 by scoudert          #+#    #+#             */
-/*   Updated: 2015/02/19 17:42:48 by scoudert         ###   ########.fr       */
+/*   Updated: 2015/02/20 18:34:15 by scoudert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <SDL_mixer.h>
 # include <SDL_image.h>
 # include <SDL_ttf.h>
-# include "libft/includes/libft.h"
+# include "libft.h"
 # include <unistd.h>
 # include "sdl_define.h"
 # define HEIGHT_SCREEN	354
@@ -68,14 +68,15 @@ typedef struct			s_menu
 
 typedef struct			s_bad
 {
-	SDL_Surface			*bad[5];
+	SDL_Surface			*sprite[10];
 	SDL_Rect			pos_bad;
+	SDL_Surface			*image;
 }						t_bad;
 
 int						menu_sound(t_sdl *sdl, t_menu *menu);
 int						menu_credit(t_sdl *sdl, t_menu *menu);
 int						ft_menu(t_menu *menu, t_sdl *sdl);
 void					loop(t_sdl sdl, t_bad bad);
-void					ennemy(t_sdl *sdl, t_bad *bad);
+int					ennemy(t_sdl *sdl, t_bad *bad);
 
 #endif

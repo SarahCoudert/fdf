@@ -6,13 +6,13 @@
 /*   By: scoudert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/09 13:07:15 by scoudert          #+#    #+#             */
-/*   Updated: 2015/02/19 17:33:33 by scoudert         ###   ########.fr       */
+/*   Updated: 2015/02/20 14:53:10 by scoudert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "INCLUDES/game.h"
 
-void sprite_init		(t_sdl *sdl, t_menu *menu)
+void		sprite_init		(t_sdl *sdl, t_menu *menu, t_bad *bad)
 {
 	sdl->sprite[0] = img_load("../IMG_SRC/SPRITE/Black Horse/horse-run-black-00.png");
 	sdl->sprite[1] = img_load("../IMG_SRC/SPRITE/Black Horse/horse-run-black-01.png");
@@ -49,6 +49,13 @@ void sprite_init		(t_sdl *sdl, t_menu *menu)
 	menu->words[3] = "Menu";
 	menu->words[4] = "   ";
 	bad->sprite[0] = img_load("../IMG_SRC/Sprite/ennemy/Box.png");
+	bad->sprite[1] = img_load("../IMG_SRC/Sprite/ennemy/box01.png");
+	bad->sprite[2] = img_load("../IMG_SRC/Sprite/ennemy/box02.png");
+	bad->sprite[3] = img_load("../IMG_SRC/Sprite/ennemy/box03.png");
+	bad->sprite[4] = img_load("../IMG_SRC/Sprite/ennemy/box04.png");
+	bad->sprite[5] = img_load("../IMG_SRC/Sprite/ennemy/box05.png");
+	bad->sprite[6] = img_load("../IMG_SRC/Sprite/ennemy/box06.png");
+	bad->sprite[7] = img_load("../IMG_SRC/Sprite/ennemy/box07.png");
 }
 
 int		main(int ac, char **av)
@@ -65,8 +72,8 @@ int		main(int ac, char **av)
 	rgb.b = 225;
 	sdl.pos_poney.x = 50;
 	sdl.pos_poney.y = 220;
-	bad.pos_bad.x = 1010;
-	bad.pos_bad.y = 220;
+	bad.pos_bad.x = 1200;
+	bad.pos_bad.y = 240;
 	sdl.rect.x = 0;
 	sdl.rect.y = 0;
 	sdl.bgx = 0;
@@ -85,7 +92,7 @@ int		main(int ac, char **av)
 	i = 0;
 	(void)ac;
 	(void)**av;
-	sprite_init(&sdl, &menu);
+	sprite_init(&sdl, &menu, &bad);
 	if ((sdl_init(SDL_INIT_VIDEO | SDL_INIT_AUDIO)) == (-1))
 	{
 		ft_putendl_fd("SDL_Init error.", 2);
