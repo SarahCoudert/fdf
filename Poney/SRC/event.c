@@ -24,7 +24,6 @@ static void			move_bg(t_sdl *sdl)
 static void		jump(t_sdl *sdl, Uint8 *keystate)
 {
 	static int			i = 0;
-	SDL_Delay(30);
 	if (i < 7)
 	{
 		if (i < 3)
