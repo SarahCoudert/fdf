@@ -56,6 +56,10 @@ void		sprite_init		(t_sdl *sdl, t_menu *menu, t_bad *bad)
 	bad->sprite[5] = img_load("../IMG_SRC/SPRITE/ennemy/box05.png");
 	bad->sprite[6] = img_load("../IMG_SRC/SPRITE/ennemy/box06.png");
 	bad->sprite[7] = img_load("../IMG_SRC/SPRITE/ennemy/box07.png");
+	sdl->messages[0] = "GAME OVER";
+	sdl->messages[1] = "Retry";
+	sdl->messages[2] = "Menu";
+	sdl->messages[2] = "Quit";
 }
 
 int		main(int ac, char **av)
@@ -112,7 +116,9 @@ int		main(int ac, char **av)
 	sdl_caption("Horsemen of the Appocalypse", NULL);
 	while (i <= 4)
 	{
+		sdl.font[i] = TTF_OpenFont("../IMG_SRC/FONTS/Quicksand-Bold.ttf", sdl.size[i]);
 		menu.font[i] = TTF_OpenFont("../IMG_SRC/FONTS/Quicksand-Bold.ttf", menu.size[i]);
+		sdl.text[i] = TTF_RenderText_Solid(menu.font[i], sdl.messages[i] , rgb);
 		menu.message[i] = TTF_RenderText_Solid(menu.font[i], menu.words[i], rgb);
 		i++;
 	}

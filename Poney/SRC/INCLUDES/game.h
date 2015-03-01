@@ -46,6 +46,10 @@ typedef struct			s_sdl
 	int					time_since_begin;
 	int					prev_time;
 	Mix_Music			*music;
+	char				*messages[10];
+	SDL_Surface			*text[10];
+	int					size[5];
+	TTF_Font			*font[5];
 }						t_sdl;
 
 typedef struct			s_menu
@@ -77,6 +81,6 @@ int						menu_sound(t_sdl *sdl, t_menu *menu);
 int						menu_credit(t_sdl *sdl, t_menu *menu);
 int						ft_menu(t_menu *menu, t_sdl *sdl);
 void					loop(t_sdl sdl, t_bad bad);
-int					ennemy(t_sdl *sdl, t_bad *bad);
+int						ennemy(t_sdl *sdl, t_bad *bad);
 
 #endif

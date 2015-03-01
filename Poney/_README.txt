@@ -6,18 +6,28 @@
 #    By  scoudert <marvin@42.fr>                                               #
 #                                                                              #
 #    Created  2015/02/17 14 47 01 by scoudert                                  #
-#    Updated  2015/02/17 17 36 13 by scoudert                                  #
+#    Updated  2015/03/01 20 36 13 by scoudert                                  #
 #                                                                              #
 # **************************************************************************** #
 
 This game was created by scoudert and mgrimald in 2015
 
+IMPORTANT :
+
+To compile this game, please use the Makefile in the folder name "SRC".
+Use the 'make' command if you are under MacOs, or 'make linux' if you are under
+a Linux distribution.
+Please note that the 'make linux' command was tested only under Linux Mint 16
+Petra version. Comportement with others distributions are unknown.
+Do not move the executable, or the game may not start and some images and sounds
+may not be available.
+
+---------------------
 Commands
 
 M - Mute and resume Music
 Up - Jump
 Maintening up - glide
-Right - Fire
 
 ------------------------
 
