@@ -6,7 +6,7 @@
 /*   By: scoudert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 18:30:11 by scoudert          #+#    #+#             */
-/*   Updated: 2015/02/20 18:34:15 by scoudert         ###   ########.fr       */
+/*   Updated: 2015/03/02 18:14:52 by scoudert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,10 @@ typedef struct			s_sdl
 	int					prev_time;
 	Mix_Music			*music;
 	char				*messages[10];
-	SDL_Surface			*text[10];
+	SDL_Surface			*text[100];
 	int					size[5];
 	TTF_Font			*font[5];
+	int					life;
 }						t_sdl;
 
 typedef struct			s_menu
@@ -75,6 +76,7 @@ typedef struct			s_bad
 	SDL_Surface			*sprite[10];
 	SDL_Rect			pos_bad;
 	SDL_Surface			*image;
+	SDL_Rect			pos_message;
 }						t_bad;
 
 int						menu_sound(t_sdl *sdl, t_menu *menu);

@@ -6,7 +6,7 @@
 /*   By: scoudert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/09 13:07:15 by scoudert          #+#    #+#             */
-/*   Updated: 2015/03/02 12:11:43 by scoudert         ###   ########.fr       */
+/*   Updated: 2015/03/02 18:40:56 by scoudert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,11 @@ void		sprite_init(t_sdl *sdl, t_menu *menu, t_bad *bad)
 	menu->words[2] = "Previous";
 	menu->words[3] = "Menu";
 	menu->words[4] = "   ";
-	bad->sprite[0] = img_load("../img_src/sprite/ennemy/Box.png");
+	sdl->size[0] = 40;
+	sdl->size[1] = 40;
+	sdl->size[2] = 40;
+	sdl->size[3] = 40;
+	bad->sprite[0] = img_load("../img_src/sprite/ennemy/2.png");
 	bad->sprite[1] = img_load("../img_src/sprite/ennemy/box01.png");
 	bad->sprite[2] = img_load("../img_src/sprite/ennemy/box02.png");
 	bad->sprite[3] = img_load("../img_src/sprite/ennemy/box03.png");
@@ -71,6 +75,7 @@ int		main(int ac, char **av)
 	int				i;
 	SDL_Color		rgb;
 
+	sdl.life = 3;
 	rgb.r = 225;
 	rgb.g = 225;
 	rgb.b = 225;
@@ -78,6 +83,8 @@ int		main(int ac, char **av)
 	sdl.pos_poney.y = 220;
 	bad.pos_bad.x = 1200;
 	bad.pos_bad.y = 240;
+	bad.pos_message.x = WIDTH_SCREEN / 2;
+	bad.pos_message.x = HEIGHT_SCREEN / 2;
 	sdl.rect.x = 0;
 	sdl.rect.y = 0;
 	sdl.bgx = 0;
@@ -113,13 +120,13 @@ int		main(int ac, char **av)
 		ft_putendl_fd("Error : Cannot load music", 2);
 	if (sdl.screen == NULL)
 		ft_putendl_fd("Error : Cannot load video", 2);
-	sdl_caption("Horsemen of the Appocalypse", NULL);
-	while (i <= 4)
+	sdl_caption("Poney Jump", NULL);
+	while (i < 4)
 	{
-	//	sdl.font[i] = TTF_OpenFont("../img_src/fonts/Quicksand-Bold.ttf", sdl.size[i]);
-		menu.font[i] = TTF_OpenFont("../img_src/fonts/Quicksand-Bold.ttf", menu.size[i]);
-	//	sdl.text[i] = TTF_RenderText_Solid(menu.font[i], sdl.messages[i] , rgb);
+		menu.font[i] = TTF_OpenFont("../img_src/font/Quicksand-Bold.ttf", menu.size[i]);
 		menu.message[i] = TTF_RenderText_Solid(menu.font[i], menu.words[i], rgb);
+		sdl.font[i] = TTF_OpenFont("../img_src/font/Quicksand-Bold.ttf", sdl.size[i]);
+		sdl.text[i] = TTF_RenderText_Solid(sdl.font[i], sdl.messages[i] , rgb);
 		i++;
 	}
 	while (menu.is_menu)
@@ -158,7 +165,7 @@ int		main(int ac, char **av)
 	i = 0;
 	while (i < 3)
 	{
-	TTF_CloseFont(menu.font[i++]);
+		TTF_CloseFont(menu.font[i++]);
 	}
 	TTF_Quit();
 	sdl_freesurface(sdl.bg);

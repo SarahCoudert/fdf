@@ -6,11 +6,11 @@
 #    By: scoudert <marvin42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/02/11 17:58:37 by scoudert          #+#    #+#              #
-#    Updated: 2015/03/02 12:08:13 by scoudert         ###   ########.fr        #
+#    Updated: 2015/03/02 15:36:26 by scoudert         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ponyr_kaileurdelarmord
+NAME = PoneyJump
 
 CC = gcc
 

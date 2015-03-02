@@ -6,7 +6,7 @@
 /*   By: scoudert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 11:22:48 by scoudert          #+#    #+#             */
-/*   Updated: 2015/03/02 12:05:59 by scoudert         ###   ########.fr       */
+/*   Updated: 2015/03/02 18:40:58 by scoudert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ void		loop(t_sdl sdl, t_bad bad)
 {
 	int			continuer;
 	Uint8		*keystate;
-	int			debut;
 	int			i;
 	int			j;
 
@@ -109,7 +108,6 @@ void		loop(t_sdl sdl, t_bad bad)
 	j = 0;
 	continuer = 1;
 	keystate = SDL_GetKeyState(NULL);
-	debut = 1;
 	Mix_PlayMusic(sdl.music, -1);
 	while (continuer)
 	{
@@ -130,22 +128,17 @@ void		loop(t_sdl sdl, t_bad bad)
 				else
 					j = 0;
 			}
-			if (debut)//si on vient d'arriver, le poney se tient droit
-			{
-				sdl.poney = sdl.sprite[7];
-				debut--;
-			}
 			if (sdl.jumpstate == 1) //si on est en train de sauter alors on saute
 				jump(&sdl, keystate);
 			move_bg(&sdl);
-			if (ennemy(&sdl, &bad) == -1)
-			{
-//				sdl.life--;
-				SDL_BlitSurface(sdl.text[0], NULL, sdl.screen, &sdl.tempbg1);
-			}
 			SDL_BlitSurface(sdl.bg, NULL, sdl.screen, &sdl.tempbg1);
 			SDL_BlitSurface(bad.image, NULL, sdl.screen, &bad.pos_bad);
 			sdl_blit(sdl.poney, NULL, sdl.screen, &sdl.pos_poney);
+			if (ennemy(&sdl, &bad) == -1)
+			{
+				sdl.life--;
+				SDL_BlitSurface(sdl.text[0], NULL, sdl.screen, &bad.pos_message);
+			}
 			sdl_flip(sdl.screen);
 		}
 	}
