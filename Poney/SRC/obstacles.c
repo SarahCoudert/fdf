@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "INCLUDES/game.h"
+#include "includes/game.h"
 
 int		check_collision(SDL_Rect box, SDL_Rect poney)
 {

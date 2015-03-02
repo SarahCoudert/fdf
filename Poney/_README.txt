@@ -10,11 +10,12 @@
 #                                                                              #
 # **************************************************************************** #
 
-This game was created by scoudert and mgrimald in 2015
+This game was created by scoudert and mgrimald in 2015 for the contest
+"Pony Killer" organised by the Ecole 42 - France.
 
 IMPORTANT :
 
-To compile this game, please use the Makefile in the folder name "SRC".
+To compile this game, please use the Makefile in the folder named "SRC".
 Use the 'make' command if you are under MacOs, or 'make linux' if you are under
 a Linux distribution.
 Please note that the 'make linux' command was tested only under Linux Mint 16
@@ -45,7 +46,7 @@ Background : Morning Scenery by ChasingArtwork | http //chasingartwork.deviantar
 
 ----------------------
 
-Font : Copyright (c) 2011, Andrew Paglinawan (www.andrewpaglinawan.com), 
+Font : Copyright (c) 2011, Andrew Paglinawan (www.andrewpaglinawan.com),
 with Reserved Font Name "Quicksand".
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.

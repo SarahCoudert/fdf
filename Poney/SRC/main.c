@@ -6,38 +6,38 @@
 /*   By: scoudert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/09 13:07:15 by scoudert          #+#    #+#             */
-/*   Updated: 2015/02/20 14:53:10 by scoudert         ###   ########.fr       */
+/*   Updated: 2015/03/02 12:11:43 by scoudert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "INCLUDES/game.h"
+#include "includes/game.h"
 
-void		sprite_init		(t_sdl *sdl, t_menu *menu, t_bad *bad)
+void		sprite_init(t_sdl *sdl, t_menu *menu, t_bad *bad)
 {
-	sdl->sprite[0] = img_load("../IMG_SRC/SPRITE/Black Horse/horse-run-black-00.png");
-	sdl->sprite[1] = img_load("../IMG_SRC/SPRITE/Black Horse/horse-run-black-01.png");
-	sdl->sprite[2] = img_load("../IMG_SRC/SPRITE/Black Horse/horse-run-black-02.png");
-	sdl->sprite[3] = img_load("../IMG_SRC/SPRITE/Black Horse/horse-run-black-03.png");
-	sdl->sprite[4] = img_load("../IMG_SRC/SPRITE/Black Horse/horse-run-black-04.png");
-	sdl->sprite[5] = img_load("../IMG_SRC/SPRITE/Black Horse/horse-run-black-05.png");
-	sdl->sprite[6] = img_load("../IMG_SRC/SPRITE/Black Horse/horse-run-black-06.png");
-	sdl->sprite[7] = img_load("../IMG_SRC/SPRITE/Black Horse/Black-horse-00.png");
-	sdl->sprite[8] = img_load("../IMG_SRC/SPRITE/Black Horse/B-H-J-00.png");
-	sdl->sprite[9] = img_load("../IMG_SRC/SPRITE/Black Horse/B-H-J-01.png");
-	sdl->sprite[10] = img_load("../IMG_SRC/SPRITE/Black Horse/B-H-J-02.png");
-	sdl->sprite[11] = img_load("../IMG_SRC/SPRITE/Black Horse/B-H-J-03.png");
-	sdl->sprite[12] = img_load("../IMG_SRC/SPRITE/Black Horse/B-H-J-04.png");
-	sdl->sprite[13] = img_load("../IMG_SRC/SPRITE/Black Horse/B-H-J-05.png");
-	sdl->sprite[14] = img_load("../IMG_SRC/SPRITE/Black Horse/B-H-J-06.png");
-	menu->state[0] = img_load("../IMG_SRC/MENU/menu.jpg");
-	menu->state[1] = img_load("../IMG_SRC/MENU/menuplay.jpg");
-	menu->state[2] = img_load("../IMG_SRC/MENU/menusound.jpg");
-	menu->state[3] = img_load("../IMG_SRC/MENU/menucredits.jpg");
-	menu->state[4] = img_load("../IMG_SRC/MENU/menuexit.jpg");
-	menu->state[5] = img_load("../IMG_SRC/MENU/sound-page.png");
-	menu->state[6] = img_load("../IMG_SRC/MENU/sound-page-choice.png");
-	menu->state[7] = img_load("../IMG_SRC/MENU/credit page.png");
-	menu->state[8] = img_load("../IMG_SRC/MENU/credit page-choice2.png");
+	sdl->sprite[0] = img_load("../img_src/sprite/Black Horse/horse-run-black-00.png");
+	sdl->sprite[1] = img_load("../img_src/sprite/Black Horse/horse-run-black-01.png");
+	sdl->sprite[2] = img_load("../img_src/sprite/Black Horse/horse-run-black-02.png");
+	sdl->sprite[3] = img_load("../img_src/sprite/Black Horse/horse-run-black-03.png");
+	sdl->sprite[4] = img_load("../img_src/sprite/Black Horse/horse-run-black-04.png");
+	sdl->sprite[5] = img_load("../img_src/sprite/Black Horse/horse-run-black-05.png");
+	sdl->sprite[6] = img_load("../img_src/sprite/Black Horse/horse-run-black-06.png");
+	sdl->sprite[7] = img_load("../img_src/sprite/Black Horse/Black-horse-00.png");
+	sdl->sprite[8] = img_load("../img_src/sprite/Black Horse/B-H-J-00.png");
+	sdl->sprite[9] = img_load("../img_src/sprite/Black Horse/B-H-J-01.png");
+	sdl->sprite[10] = img_load("../img_src/sprite/Black Horse/B-H-J-02.png");
+	sdl->sprite[11] = img_load("../img_src/sprite/Black Horse/B-H-J-03.png");
+	sdl->sprite[12] = img_load("../img_src/sprite/Black Horse/B-H-J-04.png");
+	sdl->sprite[13] = img_load("../img_src/sprite/Black Horse/B-H-J-05.png");
+	sdl->sprite[14] = img_load("../img_src/sprite/Black Horse/B-H-J-06.png");
+	menu->state[0] = img_load("../img_src/menu/menu.jpg");
+	menu->state[1] = img_load("../img_src/menu/menuplay.jpg");
+	menu->state[2] = img_load("../img_src/menu/menusound.jpg");
+	menu->state[3] = img_load("../img_src/menu/menucredits.jpg");
+	menu->state[4] = img_load("../img_src/menu/menuexit.jpg");
+	menu->state[5] = img_load("../img_src/menu/sound-page.png");
+	menu->state[6] = img_load("../img_src/menu/sound-page-choice.png");
+	menu->state[7] = img_load("../img_src/menu/credit page.png");
+	menu->state[8] = img_load("../img_src/menu/credit page-choice2.png");
 	menu->size[0] = 19;
 	menu->size[1] = 19;
 	menu->size[2] = 20;
@@ -48,14 +48,14 @@ void		sprite_init		(t_sdl *sdl, t_menu *menu, t_bad *bad)
 	menu->words[2] = "Previous";
 	menu->words[3] = "Menu";
 	menu->words[4] = "   ";
-	bad->sprite[0] = img_load("../IMG_SRC/SPRITE/ennemy/Box.png");
-	bad->sprite[1] = img_load("../IMG_SRC/SPRITE/ennemy/box01.png");
-	bad->sprite[2] = img_load("../IMG_SRC/SPRITE/ennemy/box02.png");
-	bad->sprite[3] = img_load("../IMG_SRC/SPRITE/ennemy/box03.png");
-	bad->sprite[4] = img_load("../IMG_SRC/SPRITE/ennemy/box04.png");
-	bad->sprite[5] = img_load("../IMG_SRC/SPRITE/ennemy/box05.png");
-	bad->sprite[6] = img_load("../IMG_SRC/SPRITE/ennemy/box06.png");
-	bad->sprite[7] = img_load("../IMG_SRC/SPRITE/ennemy/box07.png");
+	bad->sprite[0] = img_load("../img_src/sprite/ennemy/Box.png");
+	bad->sprite[1] = img_load("../img_src/sprite/ennemy/box01.png");
+	bad->sprite[2] = img_load("../img_src/sprite/ennemy/box02.png");
+	bad->sprite[3] = img_load("../img_src/sprite/ennemy/box03.png");
+	bad->sprite[4] = img_load("../img_src/sprite/ennemy/box04.png");
+	bad->sprite[5] = img_load("../img_src/sprite/ennemy/box05.png");
+	bad->sprite[6] = img_load("../img_src/sprite/ennemy/box06.png");
+	bad->sprite[7] = img_load("../img_src/sprite/ennemy/box07.png");
 	sdl->messages[0] = "GAME OVER";
 	sdl->messages[1] = "Retry";
 	sdl->messages[2] = "Menu";
@@ -108,7 +108,7 @@ int		main(int ac, char **av)
 		ft_putendl_fd("Error : Cannot load font", 2);
 	if (Mix_OpenAudio(22050, AUDIO_S16SYS, 2, 4096) != 0)
 		ft_putendl_fd("Error : Cannot load music", 2);
-	sdl.music = Mix_LoadMUS("../SOUNDS_SRC/QueenOfTheNight.wav");
+	sdl.music = Mix_LoadMUS("../sounds_src/QueenOfTheNight.wav");
 	if (sdl.music == NULL)
 		ft_putendl_fd("Error : Cannot load music", 2);
 	if (sdl.screen == NULL)
@@ -116,9 +116,9 @@ int		main(int ac, char **av)
 	sdl_caption("Horsemen of the Appocalypse", NULL);
 	while (i <= 4)
 	{
-		sdl.font[i] = TTF_OpenFont("../IMG_SRC/FONTS/Quicksand-Bold.ttf", sdl.size[i]);
-		menu.font[i] = TTF_OpenFont("../IMG_SRC/FONTS/Quicksand-Bold.ttf", menu.size[i]);
-		sdl.text[i] = TTF_RenderText_Solid(menu.font[i], sdl.messages[i] , rgb);
+	//	sdl.font[i] = TTF_OpenFont("../img_src/fonts/Quicksand-Bold.ttf", sdl.size[i]);
+		menu.font[i] = TTF_OpenFont("../img_src/fonts/Quicksand-Bold.ttf", menu.size[i]);
+	//	sdl.text[i] = TTF_RenderText_Solid(menu.font[i], sdl.messages[i] , rgb);
 		menu.message[i] = TTF_RenderText_Solid(menu.font[i], menu.words[i], rgb);
 		i++;
 	}
@@ -133,10 +133,10 @@ int		main(int ac, char **av)
 		if (choice == 0)
 		{
 			menu.is_menu = 0;
-			if ((sdl.bg = img_load("../IMG_SRC/SPRITE/background/arbres.png")) == NULL)
+			if ((sdl.bg = img_load("../img_src/sprite/background/arbres.png")) == NULL)
 				ft_putendl_fd("Error : Cannot charge background image", 2);
 			sdl_blit(sdl.bg, NULL, sdl.screen, &sdl.rect);
-			if ((sdl.poney = img_load("../IMG_SRC/SPRITE/Black Horse/Black-horse-00.png")) == NULL)
+			if ((sdl.poney = img_load("../img_src/sprite/Black Horse/Black-horse-00.png")) == NULL)
 				ft_putendl_fd("Error : Cannot charge horse image", 2);
 			sdl_blit(sdl.poney, NULL, sdl.screen, &sdl.pos_poney);
 			sdl_flip(sdl.screen);

@@ -6,7 +6,7 @@
 #    By: scoudert <marvin42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/02/11 17:58:37 by scoudert          #+#    #+#              #
-#    Updated: 2015/02/20 18:36:15 by scoudert         ###   ########.fr        #
+#    Updated: 2015/03/02 12:08:13 by scoudert         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ SRC = main.c \
 
 OBJ = $(SRC:.c=.o)
 
-INC = INCLUDES
+INC = includes
 
 LIBFT = ./libft/
 
@@ -39,11 +39,17 @@ all: $(NAME)
 
 $(NAME): $(SRC)
 	make -C $(LIBFT)
-	$(CC) $(CFLAGS) $(SRC) -I $(SDL_DIR)/include/SDL $(S_D) \
+	$(CC) $(CFLAGS) $(SRC) -I $(SDL_DIR)/include/SDL $(S_D) -L$(SDL_DIR)/lib \
+		-lSDL -lSDLmain -Wl,-framework,Cocoa -lSDL -lSDL_image -lSDL_mixer \
+		-lSDL_ttf libft/libft.a -o $(NAME)
+	make -C $(LIBFT) clean
+
+debug: $(SRC)
+	make -C $(LIBFT) debug
+	$(CC) $(CFLAGS_D) $(SRC) -I $(SDL_DIR)/include/SDL $(S_D) \
 		-L$(SDL_DIR)/lib -lSDL -lSDLmain -Wl,-framework,Cocoa\
 		-lSDL -lSDL_image -lSDL_mixer -lSDL_ttf libft/libft.a \
 		-o $(NAME)
-	make -C $(LIBFT) clean
 
 linux: $(SRC)
 	make -C $(LIBFT)
@@ -59,7 +65,7 @@ clean:
 
 fclean: clean
 	make -C $(LIBFT) fclean
-	rm -f ../$(NAME)
+	rm -f $(NAME)
 
 re: fclean all
 

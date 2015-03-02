@@ -6,11 +6,11 @@
 /*   By: scoudert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/17 16:35:47 by scoudert          #+#    #+#             */
-/*   Updated: 2015/02/19 14:22:13 by scoudert         ###   ########.fr       */
+/*   Updated: 2015/03/02 11:02:25 by scoudert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "INCLUDES/game.h"
+#include "includes/game.h"
 
 int			menu_sound(t_sdl *sdl, t_menu *menu)
 {
@@ -182,7 +182,7 @@ int			ft_menu(t_menu *menu, t_sdl *sdl)
 	}
 	return (42);
 }
-
+/*
 int			gameover(t_sdl *sdl)
 {
 	int				i;
@@ -205,4 +205,4 @@ int			gameover(t_sdl *sdl)
 		SDL_WaitEvent(&event);
 		keystate = SDL_GetKeyState(NULL);
 	}
-}
+}*/

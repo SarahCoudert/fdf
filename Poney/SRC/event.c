@@ -6,11 +6,11 @@
 /*   By: scoudert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 11:22:48 by scoudert          #+#    #+#             */
-/*   Updated: 2015/02/20 15:43:53 by scoudert         ###   ########.fr       */
+/*   Updated: 2015/03/02 12:05:59 by scoudert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "INCLUDES/game.h"
+#include "includes/game.h"
 
 static void			move_bg(t_sdl *sdl)
 {
@@ -140,8 +140,8 @@ void		loop(t_sdl sdl, t_bad bad)
 			move_bg(&sdl);
 			if (ennemy(&sdl, &bad) == -1)
 			{
-				sdl.life--;
-				
+//				sdl.life--;
+				SDL_BlitSurface(sdl.text[0], NULL, sdl.screen, &sdl.tempbg1);
 			}
 			SDL_BlitSurface(sdl.bg, NULL, sdl.screen, &sdl.tempbg1);
 			SDL_BlitSurface(bad.image, NULL, sdl.screen, &bad.pos_bad);
