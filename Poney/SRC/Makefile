@@ -6,7 +6,7 @@
 #    By: scoudert <marvin42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/02/11 17:58:37 by scoudert          #+#    #+#              #
-#    Updated: 2015/03/02 15:36:26 by scoudert         ###   ########.fr        #
+#    Updated: 2015/03/03 17:28:19 by scoudert         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ SDL_F = SDL_image
 SRC = main.c \
 	  event.c \
 	  menu.c \
-	  obstacles.c
+	  obstacles.c \
+	  pause.c
 
 OBJ = $(SRC:.c=.o)
 

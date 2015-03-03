@@ -6,7 +6,7 @@
 /*   By: scoudert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/09 13:07:15 by scoudert          #+#    #+#             */
-/*   Updated: 2015/03/02 18:40:56 by scoudert         ###   ########.fr       */
+/*   Updated: 2015/03/03 18:26:04 by scoudert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ void		sprite_init(t_sdl *sdl, t_menu *menu, t_bad *bad)
 	sdl->sprite[12] = img_load("../img_src/sprite/Black Horse/B-H-J-04.png");
 	sdl->sprite[13] = img_load("../img_src/sprite/Black Horse/B-H-J-05.png");
 	sdl->sprite[14] = img_load("../img_src/sprite/Black Horse/B-H-J-06.png");
+	sdl->sprite[15] = img_load("../img_src/menu/gameover.png");
+	sdl->sprite[16] = img_load("../img_src/menu/gameover-1.png");
+	sdl->sprite[17] = img_load("../img_src/menu/gameover-2.png");
+	sdl->sprite[18] = img_load("../img_src/menu/gameover-3.png");
 	menu->state[0] = img_load("../img_src/menu/menu.jpg");
 	menu->state[1] = img_load("../img_src/menu/menuplay.jpg");
 	menu->state[2] = img_load("../img_src/menu/menusound.jpg");
@@ -136,10 +140,9 @@ int		main(int ac, char **av)
 			choice = ft_menu(&menu, &sdl);
 		}
 		if (choice == 3)
-			return (0);
+			menu.is_menu = 0;
 		if (choice == 0)
 		{
-			menu.is_menu = 0;
 			if ((sdl.bg = img_load("../img_src/sprite/background/arbres.png")) == NULL)
 				ft_putendl_fd("Error : Cannot charge background image", 2);
 			sdl_blit(sdl.bg, NULL, sdl.screen, &sdl.rect);
@@ -147,8 +150,9 @@ int		main(int ac, char **av)
 				ft_putendl_fd("Error : Cannot charge horse image", 2);
 			sdl_blit(sdl.poney, NULL, sdl.screen, &sdl.pos_poney);
 			sdl_flip(sdl.screen);
-			loop(sdl, bad);
-			return (0);
+			choice = (loop(sdl, bad));
+			if (choice == 0)
+				return (0);
 		}
 		if (choice == 1)
 		{

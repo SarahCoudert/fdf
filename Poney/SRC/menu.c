@@ -6,7 +6,7 @@
 /*   By: scoudert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/17 16:35:47 by scoudert          #+#    #+#             */
-/*   Updated: 2015/03/02 11:02:25 by scoudert         ###   ########.fr       */
+/*   Updated: 2015/03/03 18:25:55 by scoudert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,27 +182,3 @@ int			ft_menu(t_menu *menu, t_sdl *sdl)
 	}
 	return (42);
 }
-/*
-int			gameover(t_sdl *sdl)
-{
-	int				i;
-	SDL_Event		event;
-	Uint8			*keystate;
-	int				continuer;
-	SDL_Rect		mess;
-
-	i = 4;
-	mess.x = 0;
-	mess.y = 0;
-	continuer = 1;
-	while (continuer)
-	{
-	while (i < 4)
-	{
-		sdl_blit(sdl->text[i], NULL, sdl->screen, &mess);
-	}
-		sdl_flip(sdl->screen);
-		SDL_WaitEvent(&event);
-		keystate = SDL_GetKeyState(NULL);
-	}
-}*/

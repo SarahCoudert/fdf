@@ -6,17 +6,17 @@
 /*   By: scoudert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 18:30:11 by scoudert          #+#    #+#             */
-/*   Updated: 2015/03/02 18:14:52 by scoudert         ###   ########.fr       */
+/*   Updated: 2015/03/03 18:18:03 by scoudert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GAME_H
 # define GAME_H
 # include <stdlib.h>
-# include <SDL.h>
-# include <SDL_mixer.h>
-# include <SDL_image.h>
-# include <SDL_ttf.h>
+# include <../SDL/SDL.h>
+# include <../SDL/SDL_mixer.h>
+# include <../SDL/SDL_image.h>
+# include <../SDL/SDL_ttf.h>
 # include "libft.h"
 # include <unistd.h>
 # include "sdl_define.h"
@@ -37,7 +37,7 @@ typedef struct			s_sdl
 	SDL_Rect			rect;
 	SDL_Rect			pos_poney;
 	SDL_Event			event;
-	SDL_Surface			*sprite[15];
+	SDL_Surface			*sprite[20];
 	int					jumpstate;
 	int					plane;
 	int					n;
@@ -82,7 +82,9 @@ typedef struct			s_bad
 int						menu_sound(t_sdl *sdl, t_menu *menu);
 int						menu_credit(t_sdl *sdl, t_menu *menu);
 int						ft_menu(t_menu *menu, t_sdl *sdl);
-void					loop(t_sdl sdl, t_bad bad);
+int					loop(t_sdl sdl, t_bad bad);
 int						ennemy(t_sdl *sdl, t_bad *bad);
+int						gameover(t_sdl *sdl);
+int						titlescreen(t_sdl *sdl);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: scoudert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 11:22:48 by scoudert          #+#    #+#             */
-/*   Updated: 2015/03/02 18:40:58 by scoudert         ###   ########.fr       */
+/*   Updated: 2015/03/03 18:22:47 by scoudert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,13 +97,17 @@ static int		aux(t_sdl *sdl, Uint8 *keystate)
 	return (1);
 }
 
-void		loop(t_sdl sdl, t_bad bad)
+int		loop(t_sdl sdl, t_bad bad)
 {
 	int			continuer;
 	Uint8		*keystate;
 	int			i;
 	int			j;
+	int			choice;
+	int			is_loosinglife;
 
+	is_loosinglife = 0;
+	choice = 1;
 	i = 0;
 	j = 0;
 	continuer = 1;
@@ -134,12 +138,18 @@ void		loop(t_sdl sdl, t_bad bad)
 			SDL_BlitSurface(sdl.bg, NULL, sdl.screen, &sdl.tempbg1);
 			SDL_BlitSurface(bad.image, NULL, sdl.screen, &bad.pos_bad);
 			sdl_blit(sdl.poney, NULL, sdl.screen, &sdl.pos_poney);
-			if (ennemy(&sdl, &bad) == -1)
+			if (ennemy(&sdl, &bad) == -1 && is_loosinglife == 0)
 			{
 				sdl.life--;
-				SDL_BlitSurface(sdl.text[0], NULL, sdl.screen, &bad.pos_message);
+				is_loosinglife = 1;
+				if (sdl.life == 0)
+				{
+					choice = gameover(&sdl);
+					return (choice);
+				}
 			}
 			sdl_flip(sdl.screen);
 		}
 	}
+	return (42);
 }
