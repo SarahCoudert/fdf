@@ -6,7 +6,7 @@
 #    By: scoudert <marvin42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/02/11 17:58:37 by scoudert          #+#    #+#              #
-#    Updated: 2015/03/03 17:28:19 by scoudert         ###   ########.fr        #
+#    Updated: 2015/03/04 11:23:37 by scoudert         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,11 +28,11 @@ SRC = main.c \
 
 OBJ = $(SRC:.c=.o)
 
-INC = includes
+INC = includes/
 
 LIBFT = ./libft/
 
-SDL_DIR = SDL
+SDL_DIR = ./SDL/
 
 S_D = -D_GNU_SOURCE=1 -D_THREAD_SAFE
 
@@ -41,7 +41,7 @@ all: $(NAME)
 $(NAME): $(SRC)
 	make -C $(LIBFT)
 	$(CC) $(CFLAGS) $(SRC) -I $(SDL_DIR)/include/SDL $(S_D) -L$(SDL_DIR)/lib \
-		-lSDL -lSDLmain -Wl,-framework,Cocoa -lSDL -lSDL_image -lSDL_mixer \
+		-lSDL -Wl,-framework,Cocoa -lSDL -lSDL_image -lSDL_mixer -lSDLmain\
 		-lSDL_ttf libft/libft.a -o $(NAME)
 	make -C $(LIBFT) clean
 
