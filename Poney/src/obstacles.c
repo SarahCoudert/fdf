@@ -58,7 +58,7 @@ int		ennemy(t_sdl *sdl, t_bad *bad)
 		}
 	}
 	else
-		bad->pos_bad.x -= 10;
+		bad->pos_bad.x -= sdl->vitesse;
 	if (((check_collision(bad->pos_bad, sdl->pos_poney)) == -1) && (bad->is_dangerous == 1))
 			return (-1);
 	else

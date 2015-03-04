@@ -14,7 +14,7 @@
 
 static void			move_bg(t_sdl *sdl)
 {
-	sdl->bgx -= 10;
+	sdl->bgx -= sdl->vitesse;
 	if (sdl->bgx <= -sdl->bg->w + WIDTH_SCREEN)
 		sdl->bgx = 0;
 	sdl->tempbg1.x = sdl->bgx;
@@ -106,9 +106,7 @@ int		loop(t_sdl sdl, t_bad bad)
 	int			choice;
 	int			collision;
 	int			k;
-	int			m;
 
-	m = 0;
 	k = 0;
 	collision = 0;
 	choice = 1;
@@ -136,14 +134,7 @@ int		loop(t_sdl sdl, t_bad bad)
 					return (3);
 			}
 			i++;
-			if (i % 6 == 1)//if no event, Micheline is running
-			{
-				sdl.poney = sdl.sprite[j];
-				if (j < 6)
-					j++;
-				else
-					j = 0;
-			}
+			sdl.poney = sdl.sprite[j];
 			if (sdl.jumpstate == 1) //si on est en train de sauter alors on saute
 				jump(&sdl, keystate);
 			move_bg(&sdl);
@@ -163,21 +154,24 @@ int		loop(t_sdl sdl, t_bad bad)
 			}
 			SDL_BlitSurface(sdl.bg, NULL, sdl.screen, &sdl.tempbg1);
 			SDL_BlitSurface(bad.image, NULL, sdl.screen, &bad.pos_bad);
-			if (bad.is_dangerous == 1 && m == 0)
+			if (bad.is_dangerous == 1)
 			{
 				sdl_blit(sdl.poney, NULL, sdl.screen, &sdl.pos_poney);
 			}
 			else
 			{
-				if (i % 9 != 1)
-				{
-					sdl_blit(sdl.poney, NULL, sdl.screen, &sdl.pos_poney);
-					m++;
-				}
-				if (m == 15)
-					m = 0;
+				sdl.poney = sdl.sprite[j + 19];
+				SDL_SetAlpha(sdl.poney, SDL_SRCALPHA, 128);
+				sdl_blit(sdl.poney, NULL, sdl.screen, &sdl.pos_poney);
 			}
-			while (k < sdl.life)
+			if (i % 6 == 1)//if no event, Micheline is running
+			{
+				if (j < 6)
+					j++;
+				else
+					j = 0;
+			}
+			while (k < sdl.life - 7)
 			{
 				SDL_BlitSurface(bad.heart[k], NULL, sdl.screen, &bad.pos_heart[k]);
 				k++;

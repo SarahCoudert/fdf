@@ -33,6 +33,13 @@ void		sprite_init(t_sdl *sdl, t_menu *menu, t_bad *bad)
 	sdl->sprite[16] = img_load("../img_src/menu/gameover-1.png");
 	sdl->sprite[17] = img_load("../img_src/menu/gameover-2.png");
 	sdl->sprite[18] = img_load("../img_src/menu/gameover-3.png");
+	sdl->sprite[19] = img_load("../img_src/sprite/horse_ice/v2/ice-horse-run-00.png");
+	sdl->sprite[20] = img_load("../img_src/sprite/horse_ice/v2/ice-horse-run-01.png");
+	sdl->sprite[21] = img_load("../img_src/sprite/horse_ice/v2/ice-horse-run-02.png");
+	sdl->sprite[22] = img_load("../img_src/sprite/horse_ice/v2/ice-horse-run-03.png");
+	sdl->sprite[23] = img_load("../img_src/sprite/horse_ice/v2/ice-horse-run-04.png");
+	sdl->sprite[24] = img_load("../img_src/sprite/horse_ice/v2/ice-horse-run-05.png");
+	sdl->sprite[25] = img_load("../img_src/sprite/horse_ice/v2/ice-horse-run-06.png");
 	menu->state[0] = img_load("../img_src/menu/menu.jpg");
 	menu->state[1] = img_load("../img_src/menu/menuplay.jpg");
 	menu->state[2] = img_load("../img_src/menu/menusound.jpg");
@@ -88,8 +95,9 @@ int		main(int ac, char **av)
 	bad.pos_heart[0].x = 450;
 	bad.pos_heart[1].x = 500;
 	bad.pos_heart[2].x = 550;
+	sdl.vitesse = 10;
 	bad.is_dangerous = 1;
-	sdl.life = 3;
+	sdl.life = 10;
 	rgb.r = 225;
 	rgb.g = 225;
 	rgb.b = 225;

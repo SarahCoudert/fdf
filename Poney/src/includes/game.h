@@ -37,7 +37,7 @@ typedef struct			s_sdl
 	SDL_Rect			rect;
 	SDL_Rect			pos_poney;
 	SDL_Event			event;
-	SDL_Surface			*sprite[20];
+	SDL_Surface			*sprite[30];
 	int					jumpstate;
 	int					plane;
 	int					n;
@@ -51,6 +51,7 @@ typedef struct			s_sdl
 	int					size[5];
 	TTF_Font			*font[5];
 	int					life;
+	int					vitesse;
 }						t_sdl;
 
 typedef struct			s_menu
