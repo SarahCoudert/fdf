@@ -6,20 +6,20 @@
 /*   By: scoudert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 18:30:11 by scoudert          #+#    #+#             */
-/*   Updated: 2015/03/03 18:18:03 by scoudert         ###   ########.fr       */
+/*   Updated: 2015/03/04 17:49:22 by scoudert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GAME_H
 # define GAME_H
+# include <unistd.h>
+# include "sdl_define.h"
 # include <stdlib.h>
+# include <../SDL/SDL_ttf.h>
 # include <../SDL/SDL.h>
 # include <../SDL/SDL_mixer.h>
 # include <../SDL/SDL_image.h>
-# include <../SDL/SDL_ttf.h>
 # include "libft.h"
-# include <unistd.h>
-# include "sdl_define.h"
 # define HEIGHT_SCREEN	354
 # define WIDTH_SCREEN	1000
 # define WIDTH_BG		1900
@@ -77,6 +77,9 @@ typedef struct			s_bad
 	SDL_Rect			pos_bad;
 	SDL_Surface			*image;
 	SDL_Rect			pos_message;
+	int					is_dangerous;
+	SDL_Surface			*heart[3];
+	SDL_Rect			pos_heart[3];
 }						t_bad;
 
 int						menu_sound(t_sdl *sdl, t_menu *menu);

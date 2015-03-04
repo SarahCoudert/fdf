@@ -6,7 +6,7 @@
 /*   By: scoudert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 11:22:48 by scoudert          #+#    #+#             */
-/*   Updated: 2015/03/04 11:27:16 by scoudert         ###   ########.fr       */
+/*   Updated: 2015/03/04 18:31:27 by scoudert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void		jump(t_sdl *sdl, Uint8 *keystate)
 			sdl->plane = 1;
 		else
 		{
-			if (sdl->plane == 1 && i == 3 && sdl->n <= 30)
+			if (sdl->plane == 1 && i == 3 && sdl->n <= 25)
 			{
 				sdl->n++; //on incremente n pour eviter que Micheline ne vole trop longtemps
 			}
@@ -70,10 +70,10 @@ static int		aux(t_sdl *sdl, Uint8 *keystate)
 		return (0);
 	else if (sdl->event.type == SDL_KEYDOWN)// si on appuye sur une touche on regarde ce qu'il se passe
 	{
-		if (keystate[SDLK_ESCAPE])// press escape quit the game
-			return (0);
-		if (keystate[SDLK_q])// pressing q too
-			return (0);
+		if (keystate[SDLK_ESCAPE] || keystate[SDLK_q])
+		{
+			return (titlescreen(sdl));
+		}
 		if (keystate[SDLK_UP]) //jump
 		{
 			sdl->jumpstate = 1; //on met jumpstate a 1 dans tous les cas
@@ -104,9 +104,13 @@ int		loop(t_sdl sdl, t_bad bad)
 	int			i;
 	int			j;
 	int			choice;
-	int			is_loosinglife;
+	int			collision;
+	int			k;
+	int			m;
 
-	is_loosinglife = 0;
+	m = 0;
+	k = 0;
+	collision = 0;
 	choice = 1;
 	i = 0;
 	j = 0;
@@ -122,6 +126,14 @@ int		loop(t_sdl sdl, t_bad bad)
 			while (SDL_PollEvent(&sdl.event))
 			{
 				continuer = aux(&sdl, keystate);//on regarde les touches
+				if (continuer == 20)
+				{
+					if (Mix_PlayingMusic() == 1)
+						Mix_PauseMusic();
+					return (42);
+				}
+				if (continuer == 30)
+					return (3);
 			}
 			i++;
 			if (i % 6 == 1)//if no event, Micheline is running
@@ -135,21 +147,44 @@ int		loop(t_sdl sdl, t_bad bad)
 			if (sdl.jumpstate == 1) //si on est en train de sauter alors on saute
 				jump(&sdl, keystate);
 			move_bg(&sdl);
-			SDL_BlitSurface(sdl.bg, NULL, sdl.screen, &sdl.tempbg1);
-			SDL_BlitSurface(bad.image, NULL, sdl.screen, &bad.pos_bad);
-			sdl_blit(sdl.poney, NULL, sdl.screen, &sdl.pos_poney);
-			if (ennemy(&sdl, &bad) == -1 && is_loosinglife == 0)
+			collision = ennemy(&sdl, &bad);
+			if (collision == -1)
 			{
 				sdl.life--;
-				is_loosinglife = 1;
+				bad.is_dangerous = 0;
+				collision = 0;
 				if (sdl.life == 0)
 				{
+					if (Mix_PlayingMusic() == 1)
+						Mix_PauseMusic();
 					choice = gameover(&sdl);
 					return (choice);
 				}
 			}
+			SDL_BlitSurface(sdl.bg, NULL, sdl.screen, &sdl.tempbg1);
+			SDL_BlitSurface(bad.image, NULL, sdl.screen, &bad.pos_bad);
+			if (bad.is_dangerous == 1 && m == 0)
+			{
+				sdl_blit(sdl.poney, NULL, sdl.screen, &sdl.pos_poney);
+			}
+			else
+			{
+				if (i % 9 != 1)
+				{
+					sdl_blit(sdl.poney, NULL, sdl.screen, &sdl.pos_poney);
+					m++;
+				}
+				if (m == 15)
+					m = 0;
+			}
+			while (k < sdl.life)
+			{
+				SDL_BlitSurface(bad.heart[k], NULL, sdl.screen, &bad.pos_heart[k]);
+				k++;
+			}
+			k = 0;
 			sdl_flip(sdl.screen);
 		}
 	}
-	return (42);
+	return (3);
 }

@@ -6,7 +6,7 @@
 /*   by: scoudert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/19 16:36:07 by scoudert          #+#    #+#             */
-/*   Updated: 2015/02/20 15:38:53 by scoudert         ###   ########.fr       */
+/*   Updated: 2015/03/04 17:52:32 by scoudert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,22 +42,26 @@ int		ennemy(t_sdl *sdl, t_bad *bad)
 {
 	static int			i = 0;
 
-	if ((bad->image = bad->sprite[0]) == NULL)
-		ft_putendl("Estas la mierdas");
+	bad->image = bad->sprite[0];
 	if (bad->pos_bad.x == 0)
 	{
 		if (i != 7)
 		{
 			bad->image = bad->sprite[i];
 			i++;
+			bad->is_dangerous = 1;
 		}
 		else
 		{
 			i = 0;
-			bad->pos_bad.x = 1010 + (rand() % 400);
+			bad->pos_bad.x = 1090 + (rand() % 1000);
 		}
 	}
 	else
 		bad->pos_bad.x -= 10;
-	return (check_collision(bad->pos_bad, sdl->pos_poney));
+	if (((check_collision(bad->pos_bad, sdl->pos_poney)) == -1) && (bad->is_dangerous == 1))
+			return (-1);
+	else
+		return (0);
+	return (0);
 }

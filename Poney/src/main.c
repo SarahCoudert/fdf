@@ -6,7 +6,7 @@
 /*   By: scoudert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/09 13:07:15 by scoudert          #+#    #+#             */
-/*   Updated: 2015/03/03 18:26:04 by scoudert         ###   ########.fr       */
+/*   Updated: 2015/03/04 18:04:22 by scoudert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,9 @@ void		sprite_init(t_sdl *sdl, t_menu *menu, t_bad *bad)
 	sdl->messages[1] = "Retry";
 	sdl->messages[2] = "Menu";
 	sdl->messages[3] = "Quit";
+	bad->heart[0] = img_load("../img_src/sprite/Other/Hearts_01_64x64_025.png");
+	bad->heart[1] = img_load("../img_src/sprite/Other/Hearts_01_64x64_025.png");
+	bad->heart[2] = img_load("../img_src/sprite/Other/Hearts_01_64x64_025.png");
 }
 
 int		main(int ac, char **av)
@@ -79,6 +82,13 @@ int		main(int ac, char **av)
 	int				i;
 	SDL_Color		rgb;
 
+	bad.pos_heart[0].y = 20;
+	bad.pos_heart[1].y = 20;
+	bad.pos_heart[2].y = 20;
+	bad.pos_heart[0].x = 450;
+	bad.pos_heart[1].x = 500;
+	bad.pos_heart[2].x = 550;
+	bad.is_dangerous = 1;
 	sdl.life = 3;
 	rgb.r = 225;
 	rgb.g = 225;
@@ -146,12 +156,12 @@ int		main(int ac, char **av)
 			if ((sdl.bg = img_load("../img_src/sprite/background/arbres.png")) == NULL)
 				ft_putendl_fd("Error : Cannot charge background image", 2);
 			sdl_blit(sdl.bg, NULL, sdl.screen, &sdl.rect);
-			if ((sdl.poney = img_load("../img_src/sprite/Black Horse/Black-horse-00.png")) == NULL)
+			if ((sdl.poney = img_load("../img_src/sprite/Black Horse/horse-run-black-00.png")) == NULL)
 				ft_putendl_fd("Error : Cannot charge horse image", 2);
 			sdl_blit(sdl.poney, NULL, sdl.screen, &sdl.pos_poney);
 			sdl_flip(sdl.screen);
 			choice = (loop(sdl, bad));
-			if (choice == 0)
+			if (choice == 3)
 				return (0);
 		}
 		if (choice == 1)
@@ -166,14 +176,7 @@ int		main(int ac, char **av)
 			menu.is_menu = 0;
 	}
 	Mix_CloseAudio();
-	i = 0;
-	while (i < 3)
-	{
-		TTF_CloseFont(menu.font[i++]);
-	}
 	TTF_Quit();
-	sdl_freesurface(sdl.bg);
-	sdl_freesurface(sdl.poney);
 	sdl_quit();
 	return (0);
 }
