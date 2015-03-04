@@ -28,7 +28,7 @@ OBJ=$(SRC:.c=.o)
 
 RM=rm -f
 
-H_PATH= ../INCLUDES/
+H_PATH= ../includes/
 
 .PHONY: all, clean, fclean, re
 

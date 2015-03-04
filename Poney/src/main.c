@@ -67,7 +67,7 @@ void		sprite_init(t_sdl *sdl, t_menu *menu, t_bad *bad)
 	sdl->messages[0] = "GAME OVER";
 	sdl->messages[1] = "Retry";
 	sdl->messages[2] = "Menu";
-	sdl->messages[2] = "Quit";
+	sdl->messages[3] = "Quit";
 }
 
 int		main(int ac, char **av)

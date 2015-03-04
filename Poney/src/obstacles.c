@@ -42,7 +42,8 @@ int		ennemy(t_sdl *sdl, t_bad *bad)
 {
 	static int			i = 0;
 
-	bad->image = bad->sprite[0];
+	if ((bad->image = bad->sprite[0]) == NULL)
+		ft_putendl("Estas la mierdas");
 	if (bad->pos_bad.x == 0)
 	{
 		if (i != 7)
@@ -53,7 +54,7 @@ int		ennemy(t_sdl *sdl, t_bad *bad)
 		else
 		{
 			i = 0;
-			bad->pos_bad.x = 1100;
+			bad->pos_bad.x = 1010 + (rand() % 400);
 		}
 	}
 	else

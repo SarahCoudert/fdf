@@ -46,7 +46,7 @@ typedef struct			s_sdl
 	int					time_since_begin;
 	int					prev_time;
 	Mix_Music			*music;
-	char				*messages[10];
+	char				*messages[100];
 	SDL_Surface			*text[100];
 	int					size[5];
 	TTF_Font			*font[5];
