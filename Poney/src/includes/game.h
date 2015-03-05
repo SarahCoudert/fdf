@@ -6,7 +6,7 @@
 /*   By: scoudert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 18:30:11 by scoudert          #+#    #+#             */
-/*   Updated: 2015/03/04 18:32:03 by scoudert         ###   ########.fr       */
+/*   Updated: 2015/03/05 10:00:38 by scoudert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 # include <unistd.h>
 # include "sdl_define.h"
 # include <stdlib.h>
-# include <../SDL/SDL_ttf.h>
-# include <../SDL/SDL.h>
-# include <../SDL/SDL_mixer.h>
-# include <../SDL/SDL_image.h>
+# include "../SDL/include/SDL/SDL_mixer.h"
+# include "../SDL/include/SDL/SDL.h"
+# include "../SDL/include/SDL/SDL_image.h"
+# include "../SDL/include/SDL/SDL_ttf.h"
 # include "libft.h"
 # define HEIGHT_SCREEN	354
 # define WIDTH_SCREEN	1000

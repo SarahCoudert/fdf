@@ -6,7 +6,7 @@
 /*   By: scoudert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 11:22:48 by scoudert          #+#    #+#             */
-/*   Updated: 2015/03/04 18:31:27 by scoudert         ###   ########.fr       */
+/*   Updated: 2015/03/05 09:52:42 by scoudert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,7 @@ int		loop(t_sdl sdl, t_bad bad)
 				else
 					j = 0;
 			}
-			while (k < sdl.life - 7)
+			while (k < sdl.life)
 			{
 				SDL_BlitSurface(bad.heart[k], NULL, sdl.screen, &bad.pos_heart[k]);
 				k++;

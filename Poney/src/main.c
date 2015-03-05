@@ -6,7 +6,7 @@
 /*   By: scoudert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/09 13:07:15 by scoudert          #+#    #+#             */
-/*   Updated: 2015/03/04 18:04:22 by scoudert         ###   ########.fr       */
+/*   Updated: 2015/03/05 09:52:34 by scoudert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int		main(int ac, char **av)
 	bad.pos_heart[2].x = 550;
 	sdl.vitesse = 10;
 	bad.is_dangerous = 1;
-	sdl.life = 10;
+	sdl.life = 3;
 	rgb.r = 225;
 	rgb.g = 225;
 	rgb.b = 225;

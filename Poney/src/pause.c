@@ -6,7 +6,7 @@
 /*   By: scoudert <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/03 14:16:02 by scoudert          #+#    #+#             */
-/*   Updated: 2015/03/04 16:29:53 by scoudert         ###   ########.fr       */
+/*   Updated: 2015/03/05 09:51:33 by scoudert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int		titlescreen(t_sdl *sdl)
 	SDL_Event		event;
 	SDL_Color		rgb;
 	TTF_Font		*font;
-	SDL_Surface		*message[5];
+	SDL_Surface		*message[10];
 	SDL_Rect		pos[3];
 	int				what_choice;
 	SDL_Color		choice;
