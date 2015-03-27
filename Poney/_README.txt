@@ -29,6 +29,7 @@ Commands
 M - Mute and resume Music
 Up - Jump
 Maintening up - glide
+Q- Menu
 
 ------------------------
 
