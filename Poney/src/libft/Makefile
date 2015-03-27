@@ -6,7 +6,7 @@
 #    By: scoudert <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/13 16:10:00 by scoudert          #+#    #+#              #
-#    Updated: 2015/02/20 18:22:39 by scoudert         ###   ########.fr        #
+#    Updated: 2015/03/26 18:34:36 by scoudert         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ CFLAGS=-Wall -Wextra -Werror
 SRC= del.c ft_lstdel.c ft_putchar.c ft_putnbr_fd.c ft_tabnew.c tab_merge_sort.c\
 ft_lstadd.c ft_lstdelone.c ft_putchar_fd.c ft_putn.c get_next_line.c \
 ft_lstaddend.c ft_lstiter.c ft_putendl.c ft_putstr.c ft_lstcountbytes.c \
-ft_lstmap.c ft_putendl_fd.c ft_putstr_fd.c \
+ft_lstmap.c ft_putendl_fd.c ft_putstr_fd.c ft_itoa.c\
 ft_lstcountelements.c ft_lstnew.c ft_putnbr.c ft_swap.c
 
 OBJ=$(SRC:.c=.o)

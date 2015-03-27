@@ -3,14 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   obstacles.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   by: scoudert <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: scoudert <scoudert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/19 16:36:07 by scoudert          #+#    #+#             */
-/*   Updated: 2015/03/04 17:52:32 by scoudert         ###   ########.fr       */
+/*   Updated: 2015/03/27 16:24:24 by scoudert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/game.h"
+
+void	sdl_show_score(t_sdl *sdl, t_bad *bad)
+{
+	bad->message[0] = TTF_RenderText_Solid(bad->font, "Score :", bad->rgb);
+	bad->message[1] = TTF_RenderText_Solid(bad->font, ft_itoa(sdl->timer), bad->rgb);
+	SDL_BlitSurface(bad->message[0], NULL, sdl->screen, &bad->pos_score[0]);
+	SDL_BlitSurface(bad->message[1], NULL, sdl->screen, &bad->pos_score[1]);
+}
 
 int		check_collision(SDL_Rect box, SDL_Rect poney)
 {
@@ -60,7 +68,7 @@ int		ennemy(t_sdl *sdl, t_bad *bad)
 	else
 		bad->pos_bad.x -= sdl->vitesse;
 	if (((check_collision(bad->pos_bad, sdl->pos_poney)) == -1) && (bad->is_dangerous == 1))
-			return (-1);
+		return (-1);
 	else
 		return (0);
 	return (0);

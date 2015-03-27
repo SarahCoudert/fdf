@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: scoudert <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: scoudert <scoudert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/09 13:07:15 by scoudert          #+#    #+#             */
-/*   Updated: 2015/03/05 09:52:34 by scoudert         ###   ########.fr       */
+/*   Updated: 2015/03/27 16:24:23 by scoudert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void		sprite_init(t_sdl *sdl, t_menu *menu, t_bad *bad)
 	bad->heart[0] = img_load("../img_src/sprite/Other/Hearts_01_64x64_025.png");
 	bad->heart[1] = img_load("../img_src/sprite/Other/Hearts_01_64x64_025.png");
 	bad->heart[2] = img_load("../img_src/sprite/Other/Hearts_01_64x64_025.png");
+	sdl->bg[1] = img_load("../img_src/sprite/background/arbresflou1.png");
 }
 
 int		main(int ac, char **av)
@@ -113,7 +114,6 @@ int		main(int ac, char **av)
 	sdl.jumpstate = 0;
 	sdl.plane = 0;
 	sdl.n = 0;
-	sdl.bg = NULL;
 	sdl.screen = NULL;
 	sdl.tempbg1.y = 0;
 	sdl.tempbg1.x = 0;
@@ -122,6 +122,15 @@ int		main(int ac, char **av)
 	menu.what_choice = 0;
 	menu.is_menu = 1;
 	choice = 42;
+	sdl.timer = 0;
+	bad.pos_score[0].x = 670;
+	bad.pos_score[0].y = 10;
+	bad.pos_score[1].x = 785;
+	bad.pos_score[1].y = 10;
+	bad.rgb.r = 0;
+	bad.rgb.b = 0;
+	bad.rgb.g = 0;
+
 	i = 0;
 	(void)ac;
 	(void)**av;
@@ -143,6 +152,7 @@ int		main(int ac, char **av)
 	if (sdl.screen == NULL)
 		ft_putendl_fd("Error : Cannot load video", 2);
 	sdl_caption("Poney Jump", NULL);
+	bad.font = TTF_OpenFont("../img_src/font/BEBAS___.ttf", 25);
 	while (i < 4)
 	{
 		menu.font[i] = TTF_OpenFont("../img_src/font/Quicksand-Bold.ttf", menu.size[i]);
@@ -161,9 +171,9 @@ int		main(int ac, char **av)
 			menu.is_menu = 0;
 		if (choice == 0)
 		{
-			if ((sdl.bg = img_load("../img_src/sprite/background/arbres.png")) == NULL)
+			if ((sdl.bg[0] = img_load("../img_src/sprite/background/arbres.png")) == NULL)
 				ft_putendl_fd("Error : Cannot charge background image", 2);
-			sdl_blit(sdl.bg, NULL, sdl.screen, &sdl.rect);
+			sdl_blit(sdl.bg[0], NULL, sdl.screen, &sdl.rect);
 			if ((sdl.poney = img_load("../img_src/sprite/Black Horse/horse-run-black-00.png")) == NULL)
 				ft_putendl_fd("Error : Cannot charge horse image", 2);
 			sdl_blit(sdl.poney, NULL, sdl.screen, &sdl.pos_poney);

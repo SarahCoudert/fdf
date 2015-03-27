@@ -3,19 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: scoudert <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: scoudert <scoudert@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/12 11:22:48 by scoudert          #+#    #+#             */
-/*   Updated: 2015/03/05 09:52:42 by scoudert         ###   ########.fr       */
+/*   Updated: 2015/03/27 16:24:21 by scoudert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/game.h"
+#include <time.h>
 
-static void			move_bg(t_sdl *sdl)
+static void			move_bg(t_sdl *sdl, int vit)
 {
 	sdl->bgx -= sdl->vitesse;
-	if (sdl->bgx <= -sdl->bg->w + WIDTH_SCREEN)
+	if (sdl->bgx <= -sdl->bg[vit]->w + WIDTH_SCREEN)
 		sdl->bgx = 0;
 	sdl->tempbg1.x = sdl->bgx;
 	sdl->tempbg1.y = 0;
@@ -106,6 +107,7 @@ int		loop(t_sdl sdl, t_bad bad)
 	int			choice;
 	int			collision;
 	int			k;
+	int 		vit;
 
 	k = 0;
 	collision = 0;
@@ -113,6 +115,7 @@ int		loop(t_sdl sdl, t_bad bad)
 	i = 0;
 	j = 0;
 	continuer = 1;
+	vit = 0;
 	keystate = SDL_GetKeyState(NULL);
 	Mix_PlayMusic(sdl.music, -1);
 	while (continuer)
@@ -137,10 +140,10 @@ int		loop(t_sdl sdl, t_bad bad)
 			sdl.poney = sdl.sprite[j];
 			if (sdl.jumpstate == 1) //si on est en train de sauter alors on saute
 				jump(&sdl, keystate);
-			move_bg(&sdl);
 			collision = ennemy(&sdl, &bad);
 			if (collision == -1)
 			{
+				sdl.timer -= 20 + (sdl.vitesse % 50);
 				sdl.life--;
 				bad.is_dangerous = 0;
 				collision = 0;
@@ -152,7 +155,9 @@ int		loop(t_sdl sdl, t_bad bad)
 					return (choice);
 				}
 			}
-			SDL_BlitSurface(sdl.bg, NULL, sdl.screen, &sdl.tempbg1);
+			sdl.vitesse = 10 + (sdl.timer / 100);
+			move_bg(&sdl, vit);
+			SDL_BlitSurface(sdl.bg[vit], NULL, sdl.screen, &sdl.tempbg1);
 			SDL_BlitSurface(bad.image, NULL, sdl.screen, &bad.pos_bad);
 			if (bad.is_dangerous == 1)
 			{
@@ -166,6 +171,7 @@ int		loop(t_sdl sdl, t_bad bad)
 			}
 			if (i % 6 == 1)//if no event, Micheline is running
 			{
+				sdl.timer++;
 				if (j < 6)
 					j++;
 				else
@@ -176,6 +182,7 @@ int		loop(t_sdl sdl, t_bad bad)
 				SDL_BlitSurface(bad.heart[k], NULL, sdl.screen, &bad.pos_heart[k]);
 				k++;
 			}
+			sdl_show_score(&sdl, &bad);
 			k = 0;
 			sdl_flip(sdl.screen);
 		}
